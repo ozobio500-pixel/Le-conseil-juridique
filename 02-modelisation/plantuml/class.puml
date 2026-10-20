@@ -1,0 +1,142 @@
+@startuml Class_ConseilJuridique
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+title Diagramme de classes — Le Conseil Juridique
+
+enum Role {
+  ADMIN
+  JURISTE
+  ACCUEIL
+  AVOCAT
+  DIRECTION
+}
+
+enum StatutCas {
+  NOUVEAU
+  EN_COURS
+  ORIENTE
+  EN_ATTENTE
+  RESOLU
+  CLOTURE
+}
+
+enum Priorite {
+  NORMALE
+  URGENTE
+}
+
+enum TypeCas {
+  DROITS
+  ETAT_CIVIL
+  FONCIER
+  VIOLENCES
+  AUTRE
+}
+
+enum StatutOrientation {
+  PROPOSE
+  ACCEPTE
+  EN_COURS
+  TERMINE
+  REFUSE
+}
+
+class Utilisateur {
+  - id : UUID
+  - nom : String
+  - prenom : String
+  - email : String
+  - motDePasseHash : String
+  - role : Role
+  - actif : Boolean
+}
+
+class Beneficiaire {
+  - id : UUID
+  - nom : String
+  - prenom : String
+  - dateNaissance : Date
+  - telephone : String
+  - adresse : String
+  - zone : String
+}
+
+class Cas {
+  - id : UUID
+  - reference : String
+  - type : TypeCas
+  - description : String
+  - statut : StatutCas
+  - priorite : Priorite
+  - dateOuverture : DateTime
+  - dateCloture : DateTime
+}
+
+class Etape {
+  - id : UUID
+  - libelle : String
+  - dateAction : DateTime
+}
+
+class Note {
+  - id : UUID
+  - contenu : Text
+  - dateCreation : DateTime
+}
+
+class Document {
+  - id : UUID
+  - nomFichier : String
+  - cheminStockage : String
+  - categorie : String
+  - version : int
+}
+
+class RendezVous {
+  - id : UUID
+  - dateHeure : DateTime
+  - lieu : String
+  - objet : String
+  - rappelEnvoye : Boolean
+}
+
+class Partenaire {
+  - id : UUID
+  - nom : String
+  - type : String
+  - telephone : String
+  - email : String
+}
+
+class Orientation {
+  - id : UUID
+  - dateOrientation : DateTime
+  - statut : StatutOrientation
+  - commentaireRetour : Text
+}
+
+class JournalActivite {
+  - id : UUID
+  - action : String
+  - entiteConcernee : String
+  - dateAction : DateTime
+  - adresseIP : String
+}
+
+Utilisateur "1" -- "0..*" Cas : crée >
+Utilisateur "1" -- "0..*" Note : rédige >
+Utilisateur "1" -- "0..*" JournalActivite : génère >
+
+Beneficiaire "1" -- "1..*" Cas : possède >
+Beneficiaire "1" -- "0..*" RendezVous : participe >
+
+Cas "1" *-- "0..*" Etape : contient >
+Cas "1" *-- "0..*" Note : contient >
+Cas "1" *-- "0..*" Document : contient >
+Cas "1" -- "0..*" RendezVous : planifie >
+Cas "1" -- "0..*" Orientation : fait l'objet >
+
+Partenaire "1" -- "0..*" Orientation : reçoit >
+
+@enduml

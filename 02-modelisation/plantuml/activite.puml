@@ -1,0 +1,66 @@
+@startuml Activite_ParcoursCas
+title Diagramme d'activité — Parcours complet d'un cas juridique
+
+start
+
+partition "1. Accueil" {
+  :Agent d'accueil :\nEnregistrer le bénéficiaire;
+  if (Bénéficiaire déjà connu ?) then (oui)
+    :Rechercher fiche existante;
+  else (non)
+    :Créer nouvelle fiche;
+  endif
+}
+
+partition "2. Ouverture du cas" {
+  :Juriste :\nOuvrir un cas;
+  :Renseigner type + priorité + description;
+  :Statut = NOUVEAU;
+  :Étape auto : Ouverture du cas;
+}
+
+partition "3. Suivi du cas" {
+  fork
+    :Planifier rendez-vous;
+  fork again
+    :Ajouter documents;
+  fork again
+    :Rédiger notes / étapes;
+  end fork
+  :Suivi régulier;
+}
+
+partition "4. Orientation si besoin" {
+  if (Orientation nécessaire ?) then (oui)
+    :Choisir avocat / partenaire;
+    :Transmettre le cas (statut ORIENTE);
+    :Avocat consulte le cas;
+    :Enregistrer le retour;
+    if (Retour accepté ?) then (oui)
+      :Statut = EN_COURS;
+    else (non)
+      :Statut = EN_ATTENTE;
+    endif
+  else (non)
+    :Statut = EN_COURS;
+  endif
+}
+
+partition "5. Résolution" {
+  if (Cas résolu ?) then (oui)
+    :Statut = RESOLU;
+    :Statut = CLOTURE;
+    :Date de clôture enregistrée;
+  else (non)
+    :Retour au suivi;
+  endif
+}
+
+partition "6. Système" {
+  :Mise à jour automatique\ndes statistiques;
+  :Ajout au journal d'activité;
+}
+
+stop
+
+@enduml

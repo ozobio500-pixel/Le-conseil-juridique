@@ -1,0 +1,64 @@
+@startuml UseCase_ConseilJuridique
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+title Diagramme de cas d'utilisation — Le Conseil Juridique
+
+actor "Administrateur" as Admin
+actor "Juriste /\nConseiller" as Juriste
+actor "Agent\nd'accueil" as Accueil
+actor "Avocat\npartenaire" as Avocat
+actor "Direction /\nBailleur" as Direction
+
+rectangle "Le Conseil Juridique" {
+  usecase "UC01 — S'authentifier" as UC_Auth
+  usecase "UC02 — Gérer les bénéficiaires" as UC_Benef
+  usecase "UC03 — Créer / suivre un cas" as UC_Cas
+  usecase "UC04 — Ajouter note / étape" as UC_Note
+  usecase "UC05 — Gérer les documents" as UC_Doc
+  usecase "UC06 — Planifier rendez-vous" as UC_RDV
+  usecase "UC07 — Recevoir rappels" as UC_Rappel
+  usecase "UC08 — Orienter un cas" as UC_Orient
+  usecase "UC09 — Consulter un cas référé" as UC_ConsulterRef
+  usecase "UC10 — Voir statistiques" as UC_Stats
+  usecase "UC11 — Exporter un rapport" as UC_Export
+  usecase "UC12 — Rechercher / filtrer" as UC_Rech
+  usecase "UC13 — Gérer utilisateurs et rôles" as UC_Users
+  usecase "UC14 — Consulter le journal" as UC_Audit
+}
+
+Admin --> UC_Auth
+Admin --> UC_Users
+Admin --> UC_Stats
+Admin --> UC_Audit
+
+Juriste --> UC_Auth
+Juriste --> UC_Benef
+Juriste --> UC_Cas
+Juriste --> UC_Note
+Juriste --> UC_Doc
+Juriste --> UC_RDV
+Juriste --> UC_Orient
+Juriste --> UC_Stats
+Juriste --> UC_Rech
+
+Accueil --> UC_Auth
+Accueil --> UC_Benef
+Accueil --> UC_Doc
+Accueil --> UC_RDV
+Accueil --> UC_Rech
+
+Avocat --> UC_Auth
+Avocat --> UC_ConsulterRef
+
+Direction --> UC_Auth
+Direction --> UC_Stats
+Direction --> UC_Export
+
+UC_Cas ..> UC_Note : <<include>>
+UC_RDV ..> UC_Rappel : <<include>>
+UC_Orient ..> UC_ConsulterRef : <<include>>
+UC_Export ..> UC_Stats : <<extend>>
+
+@enduml
