@@ -1,0 +1,179 @@
+Cahier des charges : Le Conseil Juridique
+Plateforme de gestion de l'assistance juridique d'une ONG · Génie Logiciel, IIT Grand-Bassam · Octobre 2026
+À lire en premier
+Ce document décrit ce que l'application doit faire et comment le projet sera mené. Il est écrit pour être compris par toute personne qui reprend le projet (autre développeur, encadrant, responsable de l'ONG INTERNATION CENTRE L’ESPOIR ADJOUFFOU-BASSAM), même si son auteur n'est pas disponible pour l'expliquer. Chaque section commence par l'essentiel, puis donne les détails. Les mots techniques sont expliqués dans le glossaire (section 12) et les points encore ouverts sont listés en section 13.
+1. Présentation du projet
+Titre : Le Conseil Juridique, plateforme de gestion de l'assistance juridique d'une ONG.
+En une phrase : une application web qui permet à une ONG d'enregistrer les personnes qu'elle aide, de suivre leurs problèmes juridiques du premier accueil jusqu'à la résolution, et de produire des rapports.
+Contexte : l'ONG INTERNATION CENTRE L’ESPOIR ADJOUFFOU-BASSAM reçoit des bénéficiaires ayant des problèmes juridiques (droits, état civil, foncier, violences, etc.). Le suivi se fait aujourd'hui [sur papier / Excel / whatsapp], ce qui provoque pertes d'informations, retards et difficultés de reporting.
+Les trois problèmes à résoudre :
+•	Pertes d'informations : les dossiers sont dispersés (papiers, fichiers, messages) et peuvent être perdus ou incomplets.
+•	Retards : personne n'est alerté automatiquement des échéances (audiences, délais de recours), donc des délais peuvent être manqués.
+•	Reporting difficile : pour produire un rapport destiné à la direction ou aux bailleurs, il faut tout compter à la main.
+Problématique : comment un système numérique peut-il améliorer l'accès au conseil juridique et le suivi des cas des bénéficiaires ?
+2. Objectifs
+Objectif général : digitaliser l'accueil, le suivi et l'orientation des cas juridiques.
+Objectifs spécifiques :
+Objectif	Ce que cela veut dire concrètement
+Centraliser les dossiers des bénéficiaires et des cas	Toutes les informations d'un dossier sont au même endroit, retrouvables en quelques clics au lieu d'être cherchées dans des papiers ou des messages.
+Suivre l'avancement et les échéances de chaque cas	Chaque cas a un statut et des dates clés ; l'application rappelle les échéances.
+Orienter vers les avocats et partenaires	Un cas peut être transmis à un avocat ou à une organisation partenaire, et son retour est suivi.
+Produire automatiquement des rapports pour la direction et les bailleurs	Les statistiques et les rapports se génèrent en quelques clics, sans comptage manuel.
+Garantir la confidentialité des données	Les informations sont sensibles : seules les personnes autorisées y accèdent.
+
+3. Périmètre
+En clair : le périmètre fixe ce que l'application fera (inclus) et ne fera pas (exclus) dans sa première version. Il évite que le projet grossisse sans fin.
+Inclus : gestion des bénéficiaires, des cas, des rendez-vous, des documents, de l'orientation, des statistiques.
+Module	Contenu
+Bénéficiaires	Enregistrer les personnes aidées (fiche, historique)
+Cas	Suivre les problèmes juridiques (type, statut, priorité, étapes)
+Rendez-vous	Planifier les consultations et les audiences
+Documents	Stocker les pièces des dossiers
+Orientation	Transmettre un cas à un avocat ou à un partenaire
+Statistiques	Tableaux de bord et rapports
+
+Élément exclu	Explication
+Paiement en ligne	Aucun règlement d'honoraires ni don dans l'application
+Chatbot IA	Pas d'assistant automatique qui répond aux questions juridiques
+Application mobile native	Pas d'application à installer sur téléphone ; le site web responsive reste utilisable sur mobile
+« Version 1 » signifie que ces éléments pourront être ajoutés plus tard. Ces exclusions doivent être validées avec l’ONG [à confirmer].
+4. Acteurs
+Acteur	Rôle	Exemples d'actions
+Administrateur	Gère les utilisateurs, les rôles, les paramètres	Créer un compte, attribuer un rôle
+Juriste / conseiller	Crée et suit les cas, donne les conseils	Ouvrir un cas, ajouter une note, changer le statut
+Agent d'accueil	Enregistre les bénéficiaires, planifie les rendez-vous	Créer une fiche bénéficiaire, fixer un rendez-vous
+Avocat partenaire	Consulte les cas qui lui sont référés	Lire le cas transmis et ses documents
+Direction / bailleur	Consulte les tableaux de bord et rapports	Voir les statistiques, exporter un rapport
+Important : le bénéficiaire n'est pas un acteur. C'est la personne aidée par l'ong. Elle ne se connecte pas à l'application : ses informations sont saisies par le personnel. Elle est une donnée centrale du système (une fiche, avec un ou plusieurs cas). Un accès en ligne pour le bénéficiaire pourrait être une évolution future.
+Droits d'accès proposés :
+Fonction	Admin	Juriste	Accueil	Avocat	Direction
+Gérer les utilisateurs et les rôles	Oui	Non	Non	Non	Non
+Créer ou modifier un bénéficiaire	Non	Oui	Oui	Non	Non
+Créer ou modifier un cas	Non	Oui	Non	Non	Non
+Consulter un cas	Non	Oui	Non	Cas référés seulement	Non
+Gérer les rendez-vous	Non	Oui	Oui	Non	Non
+Ajouter des documents	Non	Oui	Oui	Non	Non
+Orienter un cas vers un partenaire	Non	Oui	Non	Non	Non
+Voir les statistiques et les rapports	Oui	Oui	Non	Non	Oui
+Consulter le journal d'activité	Oui	Non	Non	Non	Non
+5. Besoins fonctionnels
+En clair : ce que l'application doit savoir faire. Il y a dix fonctions.
+5.1 Authentification et gestion des rôles
+Chaque utilisateur se connecte avec un identifiant et un mot de passe. Son rôle détermine ce qu'il voit et ce qu'il peut faire (voir section 4).
+5.2 Gestion des bénéficiaires (fiche, historique)
+Créer, modifier et rechercher la fiche d'une personne : identité, coordonnées, [autres champs à définir avec l'ong]. L'historique regroupe tous les cas, rendez-vous et documents liés à cette personne.
+5.3 Gestion des cas juridiques (type, statut, priorité, étapes, notes)
+Un cas est un problème juridique d'un bénéficiaire. Un bénéficiaire peut avoir plusieurs cas.
+•	Type : droits, état civil, foncier, violences, etc.
+•	Statut (proposition) : Nouveau → En cours → Orienté → En attente → Résolu → Clôturé
+•	Priorité : par exemple normale ou urgente
+•	Étapes : les actions réalisées, avec leur date
+•	Notes : les observations du juriste
+5.4 Gestion des documents (upload, classement, versions)
+Ajouter des fichiers (scans, PDF, photos) à un cas, les classer par catégorie et conserver les versions successives d'un même document.
+5.5 Agenda : rendez-vous, audiences, rappels d'échéances
+Planifier les rendez-vous, audiences et échéances. L'application envoie un rappel avant chaque date pour éviter les oublis [délai de rappel à définir].
+5.6 Orientation et référencement vers avocats/partenaires
+Transmettre un cas à un avocat ou à une organisation partenaire, tenir l'annuaire de ces partenaires et enregistrer le retour (accepté, en cours, terminé).
+5.7 Tableau de bord et statistiques (cas par type, zone, statut, résolution)
+Afficher les chiffres clés : nombre de cas par type, par zone géographique, par statut, et taux de résolution.
+5.8 Export de rapports (PDF/Excel)
+Générer un rapport sur une période choisie, téléchargeable en PDF ou en Excel, pour la direction et les bailleurs.
+5.9 Recherche et filtres
+Retrouver rapidement un bénéficiaire ou un cas par nom, type, statut ou date.
+5.10 Journal d'activité (audit)
+Enregistrer qui a fait quoi et quand (connexion, modification, consultation d'un dossier). Il sert à la sécurité et à la confiance.
+Parcours d'un cas, de bout en bout
+1.	Accueil : l'agent d'accueil enregistre le bénéficiaire.
+2.	Ouverture : le juriste crée le cas (type, priorité).
+3.	Suivi : rendez-vous, documents, notes, rappels d'échéances.
+4.	Orientation : si besoin, le cas est transmis à un avocat ou à un partenaire.
+5.	Résolution : le cas passe à Résolu puis Clôturé.
+6.	Statistiques : les chiffres se mettent à jour automatiquement pour les rapports.
+Données principales manipulées
+Donnée	Contenu	Liens
+Utilisateur	Compte, rôle	Agit sur toutes les autres données
+Bénéficiaire	Fiche d'identité et coordonnées	A un ou plusieurs cas
+Cas	Type, statut, priorité, étapes, notes	Appartient à un bénéficiaire
+Document	Fichier et ses versions	Rattaché à un cas
+Rendez-vous / échéance	Date, lieu, objet	Rattaché à un cas
+Partenaire	Coordonnées de l'avocat ou de l'organisation	Reçoit des orientations
+Orientation	Cas transmis à un partenaire et son retour	Relie un cas et un partenaire
+Journal	Action, auteur, date	Trace les actions des utilisateurs
+6. Besoins non fonctionnels
+En clair : ce sont les qualités attendues de l'application (sécurité, rapidité, facilité d'usage), en plus de ses fonctions.
+Critère	Exigence	Pourquoi	Comment vérifier
+Sécurité	Mots de passe hachés, accès par rôle, HTTPS, chiffrement des données sensibles	Empêcher le vol de données et les accès non autorisés	Tester les accès de chaque rôle ; vérifier que HTTPS est actif
+Confidentialité	Accès limité aux seuls agents concernés, anonymisation des statistiques	Les données concernent des personnes vulnérables	Vérifier que les statistiques ne montrent aucun nom
+Performance	Pages en moins de 3 s sur connexion moyenne	Rester utilisable sur le terrain	Mesurer le temps de chargement des pages principales
+Utilisabilité	Interface simple, responsive (mobile et PC), en français/ang	Le personnel n'est pas forcément technique	Test avec de vrais utilisateurs
+Disponibilité et sauvegarde	Sauvegardes régulières [fréquence à définir]	Ne pas perdre les dossiers	Tester une restauration
+Conformité	Loi ivoirienne sur la protection des données personnelles	Respecter la loi	Revue de conformité [à faire]
+7.	Contraintes
+Contrainte	Valeur	Explication
+Budget et délais	[a préciser]	Limites de moyens e de temps, notamment la date de remise de mémoire
+Technologies	[ex : django / angular / postgresql	À choisir ; par exemple Django pour la partie serveur, Angular pour l'interface, PostgreSQL pour la base de données
+Connexion internet	Parfois limitée sur le terrain	Prévoir des pages légères
+
+8. Livrables
+En clair : ce qui sera remis à la fin du projet.
+Livrable	Contenu	À quoi il sert
+Cahier des charges	Le présent document	Référence commune
+Modélisation	Cas d'utilisation, diagrammes de classes et de séquence, MCD	Plan de conception, établi avant d'écrire le code
+Application fonctionnelle	L'application avec les fonctions de la section 5	Produit final
+Dépôt github	Code source hébergé en ligne	Partage et suivi des versions
+Documentation	Guide technique (installation, organisation du code)	Permettre à un autre développeur de reprendre le projet
+Manuel utilisateur	Mode d'emploi par rôle	Former le personnel de l'ong
+Mémoire	Rapport académique	Évaluation
+9. Méthodologie et planning
+Méthode : [Scrum allégé / cycle itératif] (une seule des deux sera retenue).
+•	Cycle itératif : on livre une première version simple, on la teste, puis on l'améliore par étapes.
+•	Scrum allégé : version simplifiée de Scrum. Le travail est découpé en petites tâches regroupées en sprints (cycles courts de 1 à 2 semaines), et chaque sprint donne une partie fonctionnelle à montrer.
+Phases : analyse des besoins → conception → développement → tests → déploiement → rédaction 
+Phase	Contenu	Résultat attendu	Durée ou dates
+1. Analyse des besoins	Comprendre ce que l’ong attend (entretiens)	Cahier des charges validé	[à fixer]
+2. Conception	Diagrammes UML, base de données, maquettes	Modélisation	[à fixer]
+3. Développement	Écrire le code, par petites versions	Application	[à fixer]
+4. Tests	Vérifier que tout fonctionne, corriger les erreurs	Application testée	[à fixer]
+5. Déploiement	Mettre l'application en service à l'ong	Application en ligne	[à fixer]
+6. Rédaction	Écrire le mémoire	Mémoire final	[à fixer]
+10. Indicateurs de réussite
+Indicateur	Définition	Comment le mesurer	Objectif
+Temps moyen de recherche d'un dossier	Temps pour retrouver un dossier	Chronométrer avant et après la mise en service	[à fixer]
+Nombre d'échéances manquées	Audiences ou délais ratés	Compter par période	[à fixer]
+Temps de production d'un rapport	Durée pour produire un rapport	Comparer avant et après	[à fixer]
+Taux de satisfaction des utilisateurs	Part des utilisateurs satisfaits	Questionnaire auprès du personnel	[à fixer]
+11. Risques
+Risque	Conséquence	Réponse proposée
+Fuite de données sensibles	Grave pour les bénéficiaires et pour l'ong	Accès par rôle, chiffrement, journal d'activité
+Personnel peu habitué à l'outil	L'application n'est pas utilisée	Interface simple, formation, manuel utilisateur
+Connexion Internet limitée	Lenteur ou blocage	Pages légères
+Périmètre qui grossit	Retard du projet	S'en tenir à la section 3
+Planning trop court	Projet incomplet	Développer d'abord les fonctions essentielles
+12. Glossaire
+•	Acteur : personne qui utilise l'application, avec un rôle.
+•	Bénéficiaire : personne aidée par l'ong.
+•	Cas : problème juridique d'un bénéficiaire.
+•	Orientation : transmission d'un cas à un avocat ou à un partenaire.
+•	Responsive : qui s'adapte à la taille de l'écran (téléphone, tablette, ordinateur).
+•	HTTPS : connexion sécurisée entre l'utilisateur et le site.
+•	Mot de passe haché : mot de passe stocké sous une forme transformée, impossible à relire en clair.
+•	Chiffrement : transformation des données pour qu'elles soient illisibles sans la clé.
+•	Anonymisation : retrait des noms et informations permettant d'identifier une personne.
+•	Journal d'activité (audit) : historique des actions faites dans l'application.
+•	UML : langage de schémas pour concevoir un logiciel.
+•	Cas d'utilisation : schéma montrant ce que chaque acteur peut faire.
+•	MCD : modèle conceptuel de données, schéma de la base de données.
+•	Dépôt github : espace en ligne où le code est stocké et versionné.
+•	Sprint : période courte de travail (1 à 2 semaines) dans Scrum.
+13. Points à compléter avant validation
+•	[nom] de l'ong
+•	[sur papier / Excel / whatsapp] : outil de suivi actuel
+•	Exclusions du périmètre [à confirmer]
+•	Droits d'accès proposés (section 4) [à valider]
+•	Budget et délais [à préciser]
+•	Technologies [ex. Django / Angular / postgresql]
+•	Méthode retenue [Scrum allégé / cycle itératif]
+•	Dates des phases [dates à fixer]
+•	Objectifs chiffrés des indicateurs [à fixer]
+

@@ -1,0 +1,113 @@
+Slide 1 — Titre
+
+Titre : Le Conseil Juridique
+
+Sous-titre : Plateforme de gestion de l'assistance juridique d'une ONG
+
+Pied : Génie Logiciel, IIT Grand-Bassam • Octobre 2026
+
+Slide 2 — Présentation du projet
+
+Titre : Le Conseil Juridique
+
+Contexte : L'ONG INTERNATION CENTRE L'ESPOIR ADJOUFFOU-BASSAM reçoit des bénéficiaires ayant des problèmes juridiques (droits, état civil, foncier, violences…). Le suivi se fait aujourd'hui sur papier / Excel / WhatsApp.
+
+Problématique : Comment un système numérique peut-il améliorer l'accès au conseil juridique et le suivi des cas des bénéficiaires ?
+
+Slide 3 — Objectifs
+
+Objectif général : digitaliser l'accueil, le suivi et l'orientation des cas juridiques.
+
+5 objectifs spécifiques :
+
+Centraliser les dossiers
+Suivre l'avancement et les échéances
+Orienter vers avocats et partenaires
+Produire automatiquement des rapports
+Garantir la confidentialité
+Slide 4 — Périmètre
+
+Inclus : bénéficiaires, cas, rendez-vous, documents, orientation, statistiques.
+
+Exclus (v1) : paiement en ligne, chatbot IA, application mobile native [à confirmer].
+
+Slide 5 — Acteurs
+
+Administrateur : gère utilisateurs, rôles, paramètres
+
+Juriste / conseiller : crée et suit les cas
+
+Agent d'accueil : enregistre bénéficiaires, planifie RDV
+
+Avocat partenaire : consulte les cas référés
+
+Direction / bailleur : consulte tableaux de bord et rapports
+
+Slide 6 — Besoins fonctionnels (10 modules)
+
+Authentification et rôles
+
+Gestion des bénéficiaires
+
+Gestion des cas juridiques
+
+Gestion des documents
+
+Agenda
+
+Orientation
+
+Tableau de bord
+
+Export de rapports
+
+Recherche et filtres
+
+Journal d'activité
+
+Slide 7 — Besoins non fonctionnels
+
+Sécurité, Confidentialité, Performance, Utilisabilité, Disponibilité, Conformité
+
+Slide 8 — Contraintes
+
+Budget et délais [à préciser]
+
+Technologies [Django / Angular / PostgreSQL]
+
+Connexion Internet parfois limitée
+
+Slide 9 — Livrables
+
+Cahier des charges, Modélisation, Application, Dépôt GitHub, Documentation, Manuel, Mémoire
+
+Slide 10 — Méthodologie et planning
+
+Méthode : [Scrum allégé / cycle itératif]
+
+Phases : 1. Analyse → 2. Conception → 3. Développement → 4. Tests → 5. Déploiement → 6. Rédaction
+
+Slide 11 — Méthodologie : en clair
+
+Cycle itératif : première version simple, testée puis améliorée par étapes.
+
+Scrum allégé : sprints de 1 à 2 semaines avec une partie fonctionnelle à chaque fin de sprint.
+
+Slide 12 — Indicateurs de réussite
+
+Temps moyen de recherche d'un dossier
+
+Nombre d'échéances manquées
+
+Temps de production d'un rapport
+
+Taux de satisfaction des utilisateurs
+
+Slide 13 — Merci
+
+Merci de votre attention
+
+Des questions ?
+
+Le Conseil Juridique • Génie Logiciel, IIT Grand-Bassam
+

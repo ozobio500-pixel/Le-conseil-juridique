@@ -1,0 +1,36 @@
+<mxfile host="app.diagrams.net"><diagram id="use-case" name="use-case"><mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontStyle=1;fontSize=14;" value="Le Conseil Juridique" vertex="1"><mxGeometry height="640" width="380" x="150" y="20" as="geometry"/></mxCell>
+<mxCell id="3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer utilisateurs et rôles" vertex="1"><mxGeometry height="40" width="240" x="220" y="60" as="geometry"/></mxCell>
+<mxCell id="4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Consulter le journal" vertex="1"><mxGeometry height="40" width="240" x="220" y="110" as="geometry"/></mxCell>
+<mxCell id="5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Voir les statistiques" vertex="1"><mxGeometry height="40" width="240" x="220" y="160" as="geometry"/></mxCell>
+<mxCell id="6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Exporter un rapport" vertex="1"><mxGeometry height="40" width="240" x="220" y="230" as="geometry"/></mxCell>
+<mxCell id="7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer les bénéficiaires" vertex="1"><mxGeometry height="40" width="240" x="220" y="280" as="geometry"/></mxCell>
+<mxCell id="8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer les rendez-vous" vertex="1"><mxGeometry height="40" width="240" x="220" y="330" as="geometry"/></mxCell>
+<mxCell id="9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Envoyer un rappel" vertex="1"><mxGeometry height="40" width="240" x="220" y="400" as="geometry"/></mxCell>
+<mxCell id="10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Ajouter des documents" vertex="1"><mxGeometry height="40" width="240" x="220" y="450" as="geometry"/></mxCell>
+<mxCell id="11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Gérer les cas" vertex="1"><mxGeometry height="40" width="240" x="220" y="500" as="geometry"/></mxCell>
+<mxCell id="12" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Orienter un cas" vertex="1"><mxGeometry height="40" width="240" x="220" y="550" as="geometry"/></mxCell>
+<mxCell id="13" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Consulter un cas référé" vertex="1"><mxGeometry height="40" width="240" x="220" y="600" as="geometry"/></mxCell>
+<mxCell id="14" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Agent d'accueil" vertex="1"><mxGeometry height="60" width="30" x="55" y="270" as="geometry"/></mxCell>
+<mxCell id="15" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Juriste / conseiller" vertex="1"><mxGeometry height="60" width="30" x="55" y="470" as="geometry"/></mxCell>
+<mxCell id="16" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Administrateur" vertex="1"><mxGeometry height="60" width="30" x="590" y="80" as="geometry"/></mxCell>
+<mxCell id="17" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Direction / bailleur" vertex="1"><mxGeometry height="60" width="30" x="590" y="220" as="geometry"/></mxCell>
+<mxCell id="18" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Avocat partenaire" vertex="1"><mxGeometry height="60" width="30" x="590" y="590" as="geometry"/></mxCell>
+<mxCell id="19" edge="1" parent="1" source="14" style="endArrow=none;html=1;" target="7"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="20" edge="1" parent="1" source="14" style="endArrow=none;html=1;" target="8"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="21" edge="1" parent="1" source="14" style="endArrow=none;html=1;" target="10"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="22" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="5"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="23" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="7"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="24" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="8"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="25" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="10"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="26" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="27" edge="1" parent="1" source="15" style="endArrow=none;html=1;" target="12"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="28" edge="1" parent="1" source="16" style="endArrow=none;html=1;" target="3"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="29" edge="1" parent="1" source="16" style="endArrow=none;html=1;" target="4"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="30" edge="1" parent="1" source="16" style="endArrow=none;html=1;" target="5"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="31" edge="1" parent="1" source="17" style="endArrow=none;html=1;" target="5"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="32" edge="1" parent="1" source="17" style="endArrow=none;html=1;" target="6"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="33" edge="1" parent="1" source="18" style="endArrow=none;html=1;" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="34" edge="1" parent="1" source="8" style="endArrow=open;endFill=0;dashed=1;html=1;" target="9" value="«include»"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="35" edge="1" parent="1" source="6" style="endArrow=open;endFill=0;dashed=1;html=1;" target="5" value="«extend»"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>
