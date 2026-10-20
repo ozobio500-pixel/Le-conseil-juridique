@@ -1,0 +1,32 @@
+# === PlantUML ===
+*.jar
+!plantuml.jar.md5
+
+# === Exports temporaires ===
+02-modelisation/exports/*.tmp
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Word / Office temporaires ===
+~$*.docx
+~$*.pptx
+~$*.xlsx
+
+# === Python (futur) ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# === Node (futur) ===
+node_modules/
+dist/
