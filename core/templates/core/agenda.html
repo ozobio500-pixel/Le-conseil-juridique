@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Agenda - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Agenda & Rendez-vous</h1>
+        <div>
+            <a href="{% url 'corbeille_rdv' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                🗑️ Voir la corbeille
+            </a>
+            <a href="{% url 'ajouter_rdv' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                + Planifier un rendez-vous
+            </a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 100%;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee; text-align: left;">
+                    <th style="padding: 10px;">Date & Heure</th>
+                    <th style="padding: 10px;">Objet</th>
+                    <th style="padding: 10px;">Type</th>
+                    <th style="padding: 10px;">Lieu</th>
+                    <th style="padding: 10px;">Dossier lié</th>
+                    <th style="padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rdv in rdvs %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 10px;">{{ rdv.date_heure|date:"d/m/Y à H:i" }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.objet }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.get_type_rdv_display }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.lieu }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.cas.reference }} ({{ rdv.cas.beneficiaire.nom }})</td>
+                    <td style="padding: 12px 10px;">
+                        <a href="{% url 'supprimer_rdv' rdv.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Supprimer ce rendez-vous ?');">
+                            🗑️ Supprimer
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 20px; color: #999;">
+                        Aucun rendez-vous planifié pour le moment.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

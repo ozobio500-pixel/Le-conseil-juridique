@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Nouveau Cas - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Ouvrir un nouveau cas</h1>
+        <a href="{% url 'cas_juridiques' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à la liste</a>
+    </div>
+
+    <div class="card" style="width: 100%; max-width: 600px;">
+        <form method="POST">
+            {% csrf_token %}
+            
+                                   <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Pour quel bénéficiaire ? *</label>
+                <select name="beneficiaire" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">-- Choisir un bénéficiaire dans la liste --</option>
+                    {% for b in beneficiaires %}
+                        <option value="{{ b.id }}">{{ b.nom }} {{ b.prenom }} ({{ b.zone }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type de cas *</label>
+                <select name="type_cas" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="DROITS">Droits</option>
+                    <option value="ETAT_CIVIL">État civil</option>
+                    <option value="FONCIER">Foncier</option>
+                    <option value="VIOLENCES">Violences</option>
+                    <option value="AUTRE">Autre</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Priorité *</label>
+                <select name="priorite" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="NORMALE">Normale</option>
+                    <option value="URGENTE">Urgente</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Description *</label>
+                <textarea name="description" required rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+            </div>
+
+            <button type="submit" style="background-color: #6B1D2F; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+                Créer le cas
+            </button>
+        </form>
+    </div>
+{% endblock %}

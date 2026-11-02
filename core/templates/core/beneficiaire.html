@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Bénéficiaires - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+       <div class="header">
+        <h1>Bénéficiaires</h1>
+        <div>
+            <a href="{% url 'corbeille_beneficiaire' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                 Voir la corbeille
+            </a>
+            <a href="{% url 'ajouter_beneficiaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                + Ajouter un bénéficiaire
+            </a>
+        </div>
+    </div>
+
+    <!-- ... dans le tableau ... -->
+    <thead>
+        <!-- ... -->
+        <th style="padding: 10px;">Actions</th>
+    </thead>
+    <tbody>
+        {% for beneficiaire in beneficiaires %}
+        <!-- ... -->
+        <td style="padding: 12px 10px;">
+            <a href="{% url 'supprimer_beneficiaire' beneficiaire.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Supprimer ce bénéficiaire ?');">
+                Supprimer
+            </a>
+        </td>
+        {% endfor %}
+    </tbody>
+        </table>
+    </div>
+{% endblock %}

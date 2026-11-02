@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Planifier un rendez-vous - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Planifier un rendez-vous</h1>
+        <a href="{% url 'agenda' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à l'agenda</a>
+    </div>
+
+    <div class="card" style="width: 100%; max-width: 600px;">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Dossier concerné *</label>
+                <select name="cas" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">-- Choisir un dossier --</option>
+                    {% for c in cas %}
+                        <option value="{{ c.id }}">{{ c.reference }} - {{ c.beneficiaire.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type de rendez-vous *</label>
+                <select name="type_rdv" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="CONSULTATION">Consultation</option>
+                    <option value="AUDIENCE">Audience</option>
+                    <option value="ECHEANCE">Échéance</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Date et heure *</label>
+                <input type="datetime-local" name="date_heure" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Objet *</label>
+                <input type="text" name="objet" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Ex: Entretien avec la bénéficiaire">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Lieu *</label>
+                <input type="text" name="lieu" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Ex: Tribunal de Bassam">
+            </div>
+
+            <button type="submit" style="background-color: #6B1D2F; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+                Enregistrer le rendez-vous
+            </button>
+        </form>
+    </div>
+{% endblock %}

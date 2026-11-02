@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Corbeille - Cas Juridiques{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Corbeille des Cas Juridiques</h1>
+        <a href="{% url 'cas_juridiques' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à la liste</a>
+    </div>
+
+    <div class="card" style="width: 100%;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee; text-align: left;">
+                    <th style="padding: 10px;">Nom</th>
+                    <th style="padding: 10px;">Prénom</th>
+                    <th style="padding: 10px;">Téléphone</th>
+                    <th style="padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for benef in cas_juridiques %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 10px;">{{ benef.nom }}</td>
+                    <td style="padding: 12px 10px;">{{ benef.prenom }}</td>
+                    <td style="padding: 12px 10px;">{{ benef.telephone }}</td>
+                    <td style="padding: 12px 10px;">
+                        <a href="{% url 'restaurer_beneficiaire' benef.id %}" style="color: #28a745; text-decoration: none; font-weight: bold;">
+                             Restaurer
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 20px; color: #999;">
+                        La corbeille est vide.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

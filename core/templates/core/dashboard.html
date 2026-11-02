@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Tableau de bord - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Tableau de bord</h1>
+        <div class="user-info">
+            Connecté en tant que : <strong>{{ request.user.username }}</strong>
+        </div>
+    </div>
+
+    <!-- Les 3 cartes cliquables avec les VRAIS chiffres -->
+    <div class="cards-container">
+        <a href="{% url 'cas_juridiques' %}" class="card" style="text-decoration: none; color: inherit; display: block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <h3>Dossiers en cours</h3>
+            <div class="number">{{ nombre_cas }}</div>
+            <p style="font-size: 12px; color: #6B1D2F; margin-top: 10px;">Voir les cas →</p>
+        </a>
+        
+        <a href="{% url 'agenda' %}" class="card" style="text-decoration: none; color: inherit; display: block; border-top-color: #F4D0D8; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <h3>Échéances (7 jours)</h3>
+            <div class="number">{{ nombre_echeances }}</div>
+            <p style="font-size: 12px; color: #6B1D2F; margin-top: 10px;">Voir l'agenda →</p>
+        </a>
+        
+        <a href="{% url 'cas_juridiques' %}" class="card" style="text-decoration: none; color: inherit; display: block; border-top-color: #D32F2F; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <h3>Cas urgents</h3>
+            <div class="number">{{ nombre_urgents }}</div>
+            <p style="font-size: 12px; color: #6B1D2F; margin-top: 10px;">Voir les urgences →</p>
+        </a>
+    </div>
+
+    <!-- La liste des derniers bénéficiaires -->
+    <div class="card" style="width: 100%;">
+        <h3>Derniers bénéficiaires enregistrés</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee; text-align: left;">
+                    <th style="padding: 10px;">Nom</th>
+                    <th style="padding: 10px;">Prénom</th>
+                    <th style="padding: 10px;">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for benef in derniers_benefs %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px;">{{ benef.nom }}</td>
+                    <td style="padding: 10px;">{{ benef.prenom }}</td>
+                    <td style="padding: 10px;">{{ benef.date_enregistrement|date:"d/m/Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" style="text-align: center; padding: 20px; color: #999;">
+                        Aucun bénéficiaire enregistré.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
