@@ -1,49 +1,53 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Ajouter un partenaire - Le Conseil Juridique{% endblock %}
+{% block title %}Partenaires - Le Conseil Juridique{% endblock %}
 
 {% block content %}
     <div class="header">
-        <h1>Ajouter un partenaire</h1>
-        <a href="{% url 'partenaires' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à l'annuaire</a>
+        <h1>Les partenaires</h1>
+        <a href="{% url 'ajouter_partenaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            + Nouveau partenaire
+        </a>
     </div>
 
-    <div class="card" style="width: 100%; max-width: 600px;">
-        <form method="POST">
-            {% csrf_token %}
-            
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Nom de l'organisation / de l'avocat *</label>
-                <input type="text" name="nom" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type *</label>
-                <select name="type_partenaire" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                    <option value="AVOCAT">Avocat</option>
-                    <option value="ASSOCIATION">Association</option>
-                    <option value="INSTITUTION">Institution</option>
-                </select>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Téléphone *</label>
-                <input type="text" name="telephone" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email (facultatif)</label>
-                <input type="email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Adresse (facultatif)</label>
-                <textarea name="adresse" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-            </div>
-
-            <button type="submit" style="background-color: #6B1D2F; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
-                Enregistrer le partenaire
-            </button>
+    <div class="card" style="width: 100%; background: white; padding: 20px; border-radius: 10px;">
+        
+        <!-- Barre de recherche -->
+        <form method="GET" style="margin-bottom: 20px; display: flex; gap: 10px;">
+            <input type="text" name="q" placeholder="Rechercher un nom, un numéro..." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <button type="submit" style="padding: 10px 20px; background: #eee; border: none; border-radius: 5px; cursor: pointer;">Rechercher</button>
         </form>
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee; text-align: left; font-size: 12px; color: #999;">
+                    <th style="padding: 10px;">Nom / Prénom</th>
+                    <th style="padding: 10px;">Téléphone</th>
+                    <th style="padding: 10px;">Zone</th>
+                    <th style="padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for partenaire in partenaires %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px 10px;">
+                        <strong>{{ partenaire.nom }} {{ partenaire.prenom }}</strong><br>
+                        <small style="color: #999;">PART-{{ partenaire.id }}</small>
+                    </td>
+                    <td style="padding: 15px 10px;">{{ partenaire.telephone }}</td>
+                    <td style="padding: 15px 10px;">{{ partenaire.zone }}</td>
+                    <td style="padding: 15px 10px;">
+                        <!-- Icônes Modifier / Supprimer -->
+                        <a href="{% url 'modifier_partenaire' partenaire.id %}" style="text-decoration: none; font-size: 18px; margin-right: 10px;" title="Modifier">✏️</a>
+                        <a href="{% url 'supprimer_partenaire' partenaire.id %}" style="text-decoration: none; font-size: 18px;" onclick="return confirm('Mettre à la corbeille ?');" title="Supprimer">🗑️</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 20px; color: #999;">Aucun partenaire enregistré.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

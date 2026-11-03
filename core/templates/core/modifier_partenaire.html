@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Modifier un partenaire - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Modifier le partenaire</h1>
+        <a href="{% url 'partenaires' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à l'annuaire</a>
+    </div>
+
+    <div class="card" style="width: 100%; max-width: 600px;">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Nom *</label>
+                <input type="text" name="nom" value="{{ part.nom }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type *</label>
+                <select name="type_partenaire" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="AVOCAT" {% if part.type_partenaire == 'AVOCAT' %}selected{% endif %}>Avocat</option>
+                    <option value="ASSOCIATION" {% if part.type_partenaire == 'ASSOCIATION' %}selected{% endif %}>Association</option>
+                    <option value="INSTITUTION" {% if part.type_partenaire == 'INSTITUTION' %}selected{% endif %}>Institution</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Téléphone *</label>
+                <input type="text" name="telephone" value="{{ part.telephone }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email</label>
+                <input type="email" name="email" value="{{ part.email|default:'' }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+
+            <button type="submit" style="background-color: #6B1D2F; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+                Enregistrer les modifications
+            </button>
+        </form>
+    </div>
+{% endblock %}

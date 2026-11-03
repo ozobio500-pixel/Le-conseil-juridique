@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<{% url 'ajouter_rdv' %}>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -46,12 +46,12 @@
 
     <!-- MENU DE GAUCHE -->
     <div class="sidebar">
-        <h2>⚖️ Conseil Juridique</h2>
+        <h2> Conseil Juridique</h2>
         <a href="{% url 'dashboard' %}" class="active">Tableau de bord</a>
-        <a href="#">Bénéficiaires</a>
-        <a href="#">Cas juridiques</a>
-        <a href="#">Agenda</a>
-        <a href="#">Partenaires</a>
+        <a href="{% url 'beneficiaires' %}">Bénéficiaires</a>
+        <a href="{% url 'cas_juridiques' %}">Cas juridiques</a>
+        <a href="{% url 'agendas' %}" class="active">Agenda</a>
+        <a href="{% url 'partenaires' %}">Partenaires</a>
         <div style="margin-top: auto; padding: 20px;">
             <a href="{% url 'login' %}" style="background: #4A1320; text-align: center; border-radius: 5px;">Déconnexion</a>
         </div>

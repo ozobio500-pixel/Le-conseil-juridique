@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Modifier un cas - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Modifier le cas {{ cas.reference }}</h1>
+        <a href="{% url 'cas_juridiques' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à la liste</a>
+    </div>
+
+    <div class="card" style="width: 100%; max-width: 600px;">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Type de cas *</label>
+                <select name="type_cas" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="DROITS" {% if cas.type_cas == 'DROITS' %}selected{% endif %}>Droits</option>
+                    <option value="ETAT_CIVIL" {% if cas.type_cas == 'ETAT_CIVIL' %}selected{% endif %}>État civil</option>
+                    <option value="FONCIER" {% if cas.type_cas == 'FONCIER' %}selected{% endif %}>Foncier</option>
+                    <option value="VIOLENCES" {% if cas.type_cas == 'VIOLENCES' %}selected{% endif %}>Violences</option>
+                    <option value="AUTRE" {% if cas.type_cas == 'AUTRE' %}selected{% endif %}>Autre</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Priorité *</label>
+                <select name="priorite" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="NORMALE" {% if cas.priorite == 'NORMALE' %}selected{% endif %}>Normale</option>
+                    <option value="URGENTE" {% if cas.priorite == 'URGENTE' %}selected{% endif %}>Urgente</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Statut *</label>
+                <select name="statut" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="NOUVEAU" {% if cas.statut == 'NOUVEAU' %}selected{% endif %}>Nouveau</option>
+                    <option value="EN_COURS" {% if cas.statut == 'EN_COURS' %}selected{% endif %}>En cours</option>
+                    <option value="ORIENTE" {% if cas.statut == 'ORIENTE' %}selected{% endif %}>Orienté</option>
+                    <option value="EN_ATTENTE" {% if cas.statut == 'EN_ATTENTE' %}selected{% endif %}>En attente</option>
+                    <option value="RESOLU" {% if cas.statut == 'RESOLU' %}selected{% endif %}>Résolu</option>
+                    <option value="CLOTURE" {% if cas.statut == 'CLOTURE' %}selected{% endif %}>Clôturé</option>
+                </select>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Description *</label>
+                <textarea name="description" required rows="5" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">{{ cas.description }}</textarea>
+            </div>
+
+            <button type="submit" style="background-color: #6B1D2F; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+                Enregistrer les modifications
+            </button>
+        </form>
+    </div>
+{% endblock %}

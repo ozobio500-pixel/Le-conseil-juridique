@@ -4,16 +4,15 @@
 
 {% block content %}
     <div class="header">
-                <div>
+        <h1>Liste des Bénéficiaires</h1>
+        <div>
             <a href="{% url 'corbeille_beneficiaires' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
-                 Voir la corbeille
-            
+                Voir la corbeille
+            </a>
+            <a href="{% url 'ajouter_beneficiaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                + Nouveau bénéficiaire
             </a>
         </div>
-        <h1>Liste des Bénéficiaires</h1>
-        <a href="{% url 'ajouter_beneficiaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
-            + Nouveau bénéficiaire
-        </a>
     </div>
 
     <div class="card" style="width: 100%;">
@@ -35,16 +34,13 @@
                     <td style="padding: 12px 10px;">{{ benef.telephone }}</td>
                     <td style="padding: 12px 10px;">{{ benef.zone }}</td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'supprimer_beneficiaire' benef.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce bénéficiaire ?');">
-                            🗑️ Supprimer
-                        </a>
+                        <a href="{% url 'modifier_beneficiaire' benef.id %}" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">Modifier</a>
+                        <a href="{% url 'supprimer_beneficiaire' benef.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">Supprimer</a>
                     </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="5" style="text-align: center; padding: 20px; color: #999;">
-                        Aucun bénéficiaire enregistré pour le moment.
-                    </td>
+                    <td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun bénéficiaire enregistré.</td>
                 </tr>
                 {% endfor %}
             </tbody>

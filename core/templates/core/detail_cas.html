@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Détail du cas - Le Conseil Juridique{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Dossier {{ cas.reference }}</h1>
+        <a href="{% url 'cas_juridiques' %}" style="color: #6B1D2F; text-decoration: none;">← Retour à la liste</a>
+    </div>
+
+    <!-- Informations principales -->
+    <div class="card" style="width: 100%; margin-bottom: 20px;">
+        <h3 style="margin-top: 0;">Informations Générales</h3>
+        <div style="display: flex; gap: 30px; margin-top: 15px;">
+            <div><strong>Bénéficiaire :</strong> {{ cas.beneficiaire.nom }} {{ cas.beneficiaire.prenom }}</div>
+            <div><strong>Type :</strong> {{ cas.get_type_cas_display }}</div>
+            <div>
+    <strong>Priorité :</strong> 
+    {% if cas.priorite == 'URGENTE' %}
+        <span style="color: red; font-weight: bold;">{{ cas.get_priorite_display }}</span>
+    {% else %}
+        <span style="color: black;">{{ cas.get_priorite_display }}</span>
+    {% endif %}
+</div>
+            <div><strong>Statut :</strong> {{ cas.get_statut_display }}</div>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>Description :</strong>
+            <p style="background: #f9f9f9; padding: 10px; border-radius: 5px;">{{ cas.description }}</p>
+        </div>
+    </div>
+
+    <!-- Section Rendez-vous -->
+    <div class="card" style="width: 100%; margin-bottom: 20px;">
+        <h3 style="margin-top: 0;">Rendez-vous liés</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="border-bottom: 1px solid #eee; text-align: left;">
+                    <th style="padding: 10px;">Date</th>
+                    <th style="padding: 10px;">Objet</th>
+                    <th style="padding: 10px;">Lieu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rdv in rendez_vous %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px;">{{ rdv.date_heure|date:"d/m/Y à H:i" }}</td>
+                    <td style="padding: 10px;">{{ rdv.objet }}</td>
+                    <td style="padding: 10px;">{{ rdv.lieu }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3" style="padding: 10px; color: #999;">Aucun rendez-vous pour ce dossier.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section Documents -->
+    <div class="card" style="width: 100%;">
+        <h3 style="margin-top: 0;">Documents</h3>
+        <p style="color: #999;">La gestion des documents sera ajoutée prochainement.</p>
+    </div>
+{% endblock %}

@@ -25,17 +25,16 @@
                     <td style="padding: 12px 10px;">{{ benef.prenom }}</td>
                     <td style="padding: 12px 10px;">{{ benef.telephone }}</td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'restaurer_beneficiaire' benef.id %}" style="color: #28a745; text-decoration: none; font-weight: bold;">
+                        <a href="{% url 'restaurer_beneficiaire' benef.id %}" style="color: #28a745; text-decoration: none; font-weight: bold; margin-right: 15px;">
                              Restaurer
+                        </a>
+                        <a href="{% url 'supprimer_definitivement_beneficiaire' benef.id %}" style="color: #D32F2F; text-decoration: none; font-weight: bold;" onclick="return confirm('Attention ! Supprimer définitivement ce bénéficiaire ? Cette action est irréversible.');">
+                             Supprimer définitivement
                         </a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="4" style="text-align: center; padding: 20px; color: #999;">
-                        La corbeille est vide.
-                    </td>
-                </tr>
+                <tr><td colspan="4" style="text-align: center; padding: 20px; color: #999;">La corbeille est vide.</td></tr>
                 {% endfor %}
             </tbody>
         </table>
