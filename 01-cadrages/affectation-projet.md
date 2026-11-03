@@ -11,7 +11,7 @@
 |-------|--------|
 | **Nom du projet** | Le Conseil Juridique |
 | **Type** | Application web de gestion de l'assistance juridique |
-| **Structure d'accueil** | Centre l'Espoir |
+| **Structure d'accueil** | ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM |
 | **Adresse** | Adjouffou-Bassam, Grand-Bassam, Côte d'Ivoire |
 | **Statut de la structure** | ONG d'utilité publique internationale |
 | **Responsable de la structure** | **À CONFIRMER** |
@@ -46,9 +46,10 @@
 
 ## 4. Contexte et problématique
 
-Le Centre l'Espoir assure le suivi de bénéficiaires ayant des problèmes juridiques
-(droits, état civil, foncier, violences, etc.). Ce suivi est actuellement réalisé sur
-papier, dans des fichiers Excel et par messages WhatsApp, ce qui entraîne :
+L'ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM assure le suivi de
+bénéficiaires ayant des problèmes juridiques (droits, état civil, foncier,
+violences, etc.). Ce suivi est actuellement réalisé sur papier, dans des
+fichiers Excel et par messages WhatsApp, ce qui entraîne :
 
 - des **pertes d'informations** (dossiers dispersés, incomplets) ;
 - des **retards** (aucune alerte automatique sur les échéances) ;

@@ -1,7 +1,7 @@
 # Le Conseil Juridique
 
-Application web de gestion de l'assistance juridique du **Centre l'Espoir**  
-ONG d'utilité publique internationale — Adjouffou-Bassam, Grand-Bassam, Côte d'Ivoire
+Application web de gestion de l'assistance juridique de l'**ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM**  
+Grand-Bassam, Côte d'Ivoire
 
 > Projet de Génie Logiciel — Institut Ivoirien de Technologie (IIT) Grand-Bassam  
 > Promotion : **À CONFIRMER** · Encadrant : **À CONFIRMER**
@@ -10,10 +10,10 @@ ONG d'utilité publique internationale — Adjouffou-Bassam, Grand-Bassam, Côte
 
 ## Présentation
 
-Le Centre l'Espoir reçoit des bénéficiaires ayant des problèmes juridiques (droits,
-état civil, foncier, violences, etc.). Le suivi se fait aujourd'hui sur papier, Excel
-et WhatsApp, ce qui entraîne des pertes d'informations, des retards et des difficultés
-de reporting.
+L'ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM reçoit des bénéficiaires
+ayant des problèmes juridiques (droits, état civil, foncier, violences, etc.).
+Le suivi se fait aujourd'hui sur papier, Excel et WhatsApp, ce qui entraîne
+des pertes d'informations, des retards et des difficultés de reporting.
 
 **Problématique :** comment un système numérique peut-il améliorer l'accès au conseil
 juridique et le suivi des cas des bénéficiaires ?

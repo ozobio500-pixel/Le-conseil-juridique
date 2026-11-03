@@ -1,96 +1,97 @@
 # Analyse d'écarts — Cahier des charges vs Périmètre V1
 
 > Ce document liste les différences observées entre le `cahier-des-charges.docx`
-> existant et le périmètre défini pour la version 1 du projet.  
-> **Aucune modification n'a été apportée au cahier des charges.**  
-> Chaque écart doit être tranché avant le début du Sprint 3 (développement).
+> et le périmètre initial décrit dans le brief. Les réponses sont extraites du CDC.  
+> **Aucune modification n'a été apportée au cahier des charges.**
 
 ---
 
-## Écart 1 — Module « Documents » : inclus dans le cahier, exclu du périmètre V1
+## Tableau récapitulatif
 
-| | Cahier des charges (§ 3 et § 5.4) | Périmètre V1 décidé |
-|-|-----------------------------------|---------------------|
-| **Position** | Module « Documents » listé comme inclus : upload, classement, versions | **Exclu** de la V1 |
-| **Impact** | La table `DOCUMENT` est déjà modélisée dans le MCD (`mcd.md`) et une séquence PlantUML lui est dédiée (`sequence-05-documents.puml`) | Ces éléments resteront dans les fichiers sources mais aucune page ni route ne sera développée en V1 |
-| **Décision requise** | ⚠️ **À CONFIRMER** : confirmer que le module Documents est bien exclu de la V1 et prévu en V2. |
-
----
-
-## Écart 2 — Module « Export de rapports PDF/Excel » : inclus dans le cahier, non mentionné dans le périmètre V1
-
-| | Cahier des charges (§ 5.8) | Périmètre V1 décidé |
-|-|---------------------------|---------------------|
-| **Position** | « Générer un rapport sur une période choisie, téléchargeable en PDF ou en Excel » | Non mentionné dans la liste des inclus V1 |
-| **Impact** | Si exclu, les écrans statistiques n'auront pas de bouton d'export. Le README de `04-maquettes` mentionne un « bouton d'exportation PDF » sur l'écran statistiques. |
-| **Décision requise** | ⚠️ **À CONFIRMER** : l'export PDF/Excel est-il inclus ou exclu de la V1 ? |
+| # | Écart | Statut | Décision |
+|---|-------|--------|----------|
+| E1 | Module Documents | ⚠️ **À CONFIRMER** | CDC § 5.4 : inclus — Brief : exclu |
+| E2 | Export PDF/Excel | ✅ Tranché | Inclus en V1 (CDC § 5.8) |
+| E3 | Nom officiel de l'ONG | ✅ Tranché | ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM |
+| E4 | Graphiques statistiques | ✅ Tranché | Inclus en V1 (CDC § 5.7) |
+| E5 | Droits Administrateur | ✅ Tranché | Selon matrice CDC § 4 |
+| E6 | Rappels automatiques | ✅ Tranché | Inclus en V1 (CDC § 5.5), délai à définir |
 
 ---
 
-## Écart 3 — Nom de l'ONG : trois variantes dans le dépôt
+## Écart 1 — Module « Documents » ⚠️ SEUL POINT EN SUSPENS
 
-| Fichier | Nom utilisé |
-|---------|-------------|
-| `cahier-des-charges.docx` | INTERNATION CENTRE L'ESPOIR ADJOUFFOU-BASSAM |
-| `presentation-entreprise.docx` | Centre l'Espoir |
-| `04-maquettes/README.md` | Centre l'Espoir |
-| `README.md` (nouveau) | Centre l'Espoir |
-| `affectation-projet.md` (nouveau) | Centre l'Espoir |
+| | CDC (§ 3 et § 5.4) | Brief initial |
+|-|--------------------|---------------|
+| **Position** | **Inclus** : upload, classement, versions | **Exclu** : « Pas de module de gestion de documents (non prévu en V1) » |
 
-**Nom retenu dans ce projet :** **Centre l'Espoir**  
-(forme courte, cohérente avec la présentation officielle de l'entreprise)
+La table `DOCUMENT` est modélisée dans le MCD et la séquence `sequence-05-documents.puml` lui est dédiée.
 
-> Note : « INTERNATION » dans le cahier des charges semble être une faute de frappe
-> pour « INTERNATIONAL ». Le nom complet officiel est :
-> **À CONFIRMER** avec l'ONG.
+> **⚠️ À CONFIRMER** : le module Documents est-il inclus ou exclu de la V1 ?  
+> - **Si inclus** : développer les pages upload/classement et activer la séquence 05.  
+> - **Si exclu** : désactiver la séquence 05, garder la table dans le MCD (pour V2) mais ne pas créer de pages.
 
 ---
 
-## Écart 4 — Module « Statistiques et rapports » : présent dans le cahier, absent de la liste des inclus V1
+## Écart 2 — Export de rapports PDF/Excel ✅ Résolu
 
-| | Cahier des charges (§ 5.7) | Périmètre V1 décidé |
-|-|---------------------------|---------------------|
-| **Position** | « Afficher les chiffres clés : nombre de cas par type, par zone, par statut, taux de résolution » | Le tableau de bord (inclus) couvre les compteurs de base. Les graphiques avancés et les rapports détaillés ne sont pas explicitement mentionnés. |
-| **Décision requise** | ⚠️ **À CONFIRMER** : les graphiques statistiques (par type, zone, statut) font-ils partie du tableau de bord V1, ou constituent-ils un module séparé ? |
-
----
-
-## Écart 5 — Matrice des droits d'accès : incohérence « Administrateur »
-
-| Fonction | Cahier des charges | Périmètre V1 |
-|----------|--------------------|--------------|
-| Voir les statistiques et les rapports | Admin : **Oui** | Non mentionné pour l'Admin |
-| Créer ou modifier un bénéficiaire | Admin : **Non** | Non mentionné |
-
-La matrice du cahier des charges (§ 4) donne à l'Administrateur l'accès aux
-statistiques mais pas à la création de bénéficiaires. Le périmètre V1 ne précise
-pas les droits de l'Administrateur sur les modules autres que « utilisateurs/rôles ».
-
-> **À CONFIRMER** : l'Administrateur a-t-il accès à l'ensemble de l'application
-> ou seulement à la gestion des utilisateurs et au journal d'activité ?
+**Décision :** inclus en V1.  
+CDC § 5.8 : « Générer un rapport sur une période choisie, téléchargeable en PDF ou en Excel, pour la direction et les bailleurs. »  
+Un bouton d'export sera présent sur l'écran statistiques.
 
 ---
 
-## Écart 6 — Rappels d'échéances : mentionnés dans le cahier, non spécifiés en V1
+## Écart 3 — Nom officiel de l'ONG ✅ Résolu
 
-| | Cahier des charges (§ 5.5) | Périmètre V1 décidé |
-|-|---------------------------|---------------------|
-| **Position** | « L'application envoie un rappel avant chaque date pour éviter les oublis [délai de rappel à définir] » | Le tableau de bord affiche les « échéances dans les 7 prochains jours » mais aucun envoi d'e-mail/SMS n'est mentionné. |
-| **Décision requise** | ⚠️ **À CONFIRMER** : les rappels automatiques (e-mail ou notification) sont-ils inclus en V1 ou seulement l'affichage des échéances dans le tableau de bord ? |
+**Nom officiel retenu dans tous les documents :**
 
----
+> **ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM**
 
-## Récapitulatif des points à confirmer
-
-| # | Point à confirmer | Impact si non tranché |
-|---|-------------------|-----------------------|
-| E1 | Module Documents : exclu V1 → confirmé V2 ? | MCD à alléger, séquence à laisser inactive |
-| E2 | Export PDF/Excel : inclus ou exclu V1 ? | Écrans statistiques avec ou sans bouton export |
-| E3 | Nom complet officiel de l'ONG | Homogénéisation de tous les documents |
-| E4 | Graphiques statistiques dans le tableau de bord V1 ? | Portée de l'écran « statistiques » |
-| E5 | Droits d'accès complets de l'Administrateur | Filtrage des menus et des vues |
-| E6 | Rappels automatiques (e-mail/SMS) en V1 ? | Nécessite une configuration e-mail Django |
+Forme courte tolérée dans les textes courants : « Centre l'Espoir ».  
+Corrigé dans : `README.md`, `affectation-projet.md`.  
+Reste à corriger si souhaité : `01-cadrages/presentation-entreprise.docx`, `04-maquettes/README.md`.
 
 ---
 
-*Analyse réalisée en novembre 2026 — à valider avant le Sprint 3*
+## Écart 4 — Graphiques statistiques dans le tableau de bord ✅ Résolu
+
+**Décision :** inclus en V1.  
+CDC § 5.7 : « Afficher les chiffres clés : nombre de cas par type, par zone géographique, par statut, et taux de résolution. »  
+Ces indicateurs feront partie du tableau de bord / écran statistiques.
+
+---
+
+## Écart 5 — Droits d'accès de l'Administrateur ✅ Résolu
+
+Matrice extraite du CDC § 4 :
+
+| Fonction | Admin | Juriste | Accueil | Avocat | Direction |
+|----------|-------|---------|---------|--------|-----------|
+| Gérer les utilisateurs et les rôles | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Créer ou modifier un bénéficiaire | ❌ | ✅ | ✅ | ❌ | ❌ |
+| Créer ou modifier un cas | ❌ | ✅ | ❌ | ❌ | ❌ |
+| Consulter un cas | ❌ | ✅ | ❌ | Cas référés seulement | ❌ |
+| Gérer les rendez-vous | ❌ | ✅ | ✅ | ❌ | ❌ |
+| Ajouter des documents | ❌ | ✅ | ✅ | ❌ | ❌ |
+| Orienter un cas vers un partenaire | ❌ | ✅ | ❌ | ❌ | ❌ |
+| Voir les statistiques et les rapports | ✅ | ✅ | ❌ | ❌ | ✅ |
+| Consulter le journal d'activité | ✅ | ❌ | ❌ | ❌ | ❌ |
+
+**Conclusion :** l'Administrateur accède uniquement à la gestion des utilisateurs, aux statistiques et au journal d'activité. Il n'a pas accès aux fiches bénéficiaires ni aux cas.
+
+---
+
+## Écart 6 — Rappels automatiques d'échéances ✅ Résolu
+
+**Décision :** inclus en V1 (affichage dans le tableau de bord).  
+CDC § 5.5 : « L'application envoie un rappel avant chaque date pour éviter les oublis [délai de rappel à définir]. »  
+
+**Périmètre précis pour la V1 :**
+- Le tableau de bord affiche les échéances dans les 7 prochains jours.
+- Les rappels par e-mail/SMS nécessitent une configuration serveur mail : à confirmer si ce niveau est attendu en V1 ou si l'affichage visuel suffit.
+
+> **À PRÉCISER (facultatif) :** les rappels sont-ils uniquement visuels (tableau de bord) ou faut-il aussi envoyer des e-mails ?
+
+---
+
+*Analyse mise à jour : novembre 2026*
