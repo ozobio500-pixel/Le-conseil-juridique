@@ -138,16 +138,3 @@ Concevoir et développer une application web qui permet à l'ONG Centre l'Espoir
 | Versionning | Git / GitHub |
 | Méthode | Scrum allégé (5 sprints) |
 
----
-
-## 10. Signatures
-
-| Rôle | Nom | Date | Signature |
-|------|-----|------|-----------|
-| Responsable de la structure d'accueil | **À CONFIRMER** | **À CONFIRMER** | |
-| Encadrant pédagogique | **À CONFIRMER** | **À CONFIRMER** | |
-| Chef de projet étudiant | **À CONFIRMER** | **À CONFIRMER** | |
-
----
-
-*Document établi le : 4 novembre 2026*
