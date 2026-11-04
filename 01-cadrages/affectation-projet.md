@@ -11,10 +11,12 @@
 |-------|--------|
 | **Nom du projet** | Le Conseil Juridique |
 | **Type** | Application web de gestion de l'assistance juridique |
-| **Structure d'accueil** | ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM |
+| **Structure d'accueil** | ONG Centre l'Espoir |
 | **Adresse** | Adjouffou-Bassam, Grand-Bassam, Côte d'Ivoire |
-| **Statut de la structure** | ONG d'utilité publique internationale |
+| **Dénomination juridique exacte** | **À CONFIRMER** |
+| **Statut de la structure** | ONG d'utilité publique internationale **À CONFIRMER** |
 | **Responsable de la structure** | **À CONFIRMER** |
+| **Date d'affectation du projet** | **À CONFIRMER** |
 | **Date de début** | **À CONFIRMER** |
 | **Date de fin prévue** | **À CONFIRMER** |
 
@@ -46,7 +48,7 @@
 
 ## 4. Contexte et problématique
 
-L'ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM assure le suivi de
+L'ONG Centre l'Espoir assure le suivi de
 bénéficiaires ayant des problèmes juridiques (droits, état civil, foncier,
 violences, etc.). Ce suivi est actuellement réalisé sur papier, dans des
 fichiers Excel et par messages WhatsApp, ce qui entraîne :
@@ -62,7 +64,7 @@ juridique et le suivi des cas des bénéficiaires ?
 
 ## 5. Objectif général
 
-Concevoir et développer une application web qui permet au Centre l'Espoir de :
+Concevoir et développer une application web qui permet à l'ONG Centre l'Espoir de :
 
 1. centraliser les fiches des bénéficiaires et leurs cas juridiques ;
 2. suivre l'avancement de chaque cas (statut, étapes, échéances) ;
@@ -115,8 +117,8 @@ Concevoir et développer une application web qui permet au Centre l'Espoir de :
 
 | Sprint | Phase | Séances | Livrable principal |
 |--------|-------|---------|-------------------|
-| Sprint 1 | Cadrage | S1–S2 | Cahier des charges, fiche d'affectation, diagrammes UML |
-| Sprint 2 | Maquette et modélisation | S3–S5 | Backlog, wireframes, MCD/MLD, validation client |
+| Sprint 1 | Cadrage | S1–S2 | Cahier des charges, fiche d'affectation, présentation du projet |
+| Sprint 2 | Maquette et modélisation | S3–S5 | Backlog, wireframes, diagrammes UML, MCD/MLD, validation client |
 | Sprint 3 | Développement front-end | S6–S9 | Application Django avec données simulées, toutes les pages |
 | Sprint 4 | Back-end | S10–S13 | Base PostgreSQL, authentification réelle, sécurité |
 | Sprint 5 | Intégration et soutenance | S14–S15 | Tests, déploiement, guide utilisateur, soutenance |
@@ -148,4 +150,4 @@ Concevoir et développer une application web qui permet au Centre l'Espoir de :
 
 ---
 
-*Document établi le : novembre 2026*
+*Document établi le : 4 novembre 2026*

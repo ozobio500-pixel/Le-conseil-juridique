@@ -1,59 +1,21 @@
 # Documentation du projet
 
-Cette section accueillera les documents complémentaires :
+Ce dossier contient les documents de suivi et les futurs guides d'utilisation et d'installation.
 
-- **Guide technique** : installation, organisation du code et déploiement.
-- **Manuel utilisateur** : mode d'emploi par rôle (administrateur, juriste,
-  agent d'accueil, avocat partenaire et direction).
+## Livrables présents
 
-Ces documents sont prévus pendant les phases de développement et de déploiement.
+| Fichier | Contenu | État |
+|---|---|---|
+| `backlog.md` | Backlog sous forme lisible | Présent; à vérifier par rapport au périmètre et aux sprints retenus |
+| `backlog.csv` | Export tabulaire du backlog | Présent |
+| `README.md` | Repères sur la documentation | Présent |
 
-## Exporter les diagrammes en PNG
+Le guide d'installation, le manuel utilisateur et le guide de démonstration sont à produire dans les phases correspondantes.
 
-### Diagrammes draw.io
+## Modélisation
 
-Pour chacun des fichiers `use-case.drawio`, `class.drawio` et `activite.drawio` :
+Les sources PlantUML sont dans `../02-modelisation/plantuml/` et les exports PNG actuels dans `../02-modelisation/exports/`. Les fichiers `.drawio` mentionnés dans d'anciennes versions de ce document ne sont pas présents dans le dépôt. Les exports PNG existent déjà : ils ne sont pas « à générer » pour compléter l'inventaire.
 
-1. Ouvrir le fichier dans l'application de bureau diagrams.net ou sur
-   [app.diagrams.net](https://app.diagrams.net).
-2. Choisir **Fichier > Exporter en > PNG**.
-3. Régler la résolution à 300 DPI, le fond en blanc et la bordure à 10 px.
-4. Enregistrer le PNG correspondant dans `02-modelisation/exports/` sous les
-   noms `use-case.png`, `class.png` et `activite.png`.
+Si un diagramme est modifié, régénérer son PNG depuis sa source PlantUML avec l'extension PlantUML de VS Code ou l'outil PlantUML, puis conserver le même nom de base et placer l'export dans `02-modelisation/exports/`. Vérifier que le PNG correspond bien à la source avant de le considérer comme à jour.
 
-### Diagrammes PlantUML
-
-Les fichiers `.puml` se trouvent dans `02-modelisation/plantuml/`.
-
-**Avec VS Code :**
-
-1. Installer l'extension PlantUML (`jebbs.plantuml`).
-2. Ouvrir un fichier `.puml`.
-3. Lancer **PlantUML: Export Current Diagram** depuis la palette de commandes
-   (`Ctrl+Shift+P`), choisir PNG et enregistrer dans `../exports/`.
-
-**Avec la ligne de commande**, depuis le dossier PlantUML :
-
-```sh
-plantuml -tpng -o ../exports/ *.puml
-```
-
-Nommer les exports `sequence-01.png` à `sequence-08.png`.
-
-Les PNG doivent être générés à partir des diagrammes sources ; des fichiers
-PNG vides ne constituent pas des exports valides.
-
-## Checklist des livrables
-
-| # | Élément | Fichier(s) | État |
-| --- | --- | --- | --- |
-| 1 | README du projet | `README.md` | Créé |
-| 2 | Cahier des charges | `01-cadrages/cahier-des-charges.docx` | Créé, à valider |
-| 3 | Présentation de l'entreprise | `01-cadrages/presentation-entreprise.docx` | Créée, à valider |
-| 4 | Présentation du projet | `01-cadrages/presentation-projet.pptx` | Créée (13 diapositives), à valider |
-| 5 | Diagramme de cas d'utilisation | `02-modelisation/drawio/use-case.drawio` | Créé |
-| 6 | Diagramme de classes | `02-modelisation/drawio/class.drawio` | Créé |
-| 7 | Diagramme d'activité | `02-modelisation/drawio/activite.drawio` | Créé |
-| 8–15 | Huit diagrammes de séquence | `02-modelisation/plantuml/*.puml` | Créés |
-| 16 | Dépôt Git initialisé et publié | Dépôt distant à choisir | À faire |
-| — | Exports des diagrammes | `02-modelisation/exports/*.png` | À générer localement |
+Les documents de cadrage et la modélisation sont encore soumis à vérification et validation par l'équipe et l'ONG Centre l'Espoir.

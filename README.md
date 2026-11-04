@@ -1,197 +1,75 @@
 # Le Conseil Juridique
 
-Application web de gestion de l'assistance juridique de l'**ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM**  
-Grand-Bassam, Côte d'Ivoire
+Application web de gestion de l'assistance juridique de l'ONG Centre l'Espoir, située à Adjouffou-Bassam, Grand-Bassam.
 
-> Projet de Génie Logiciel — Institut Ivoirien de Technologie (IIT) Grand-Bassam  
-> Promotion : **À CONFIRMER** · Encadrant : **À CONFIRMER**
+> Projet de Génie Logiciel, Institut Ivoirien de Technologie (IIT) Grand-Bassam
+> Équipe : **À CONFIRMER** · Encadrant : **À CONFIRMER**
 
----
+## Objectif et périmètre V1
 
-## Présentation
+L'application vise à centraliser les bénéficiaires et leurs cas juridiques, suivre les rendez-vous et les orientations, gérer l'annuaire des partenaires et afficher des indicateurs de suivi.
 
-L'ONG INTERNATIONAL CENTRE L'ESPOIR ADJOUFFOU-BASSAM reçoit des bénéficiaires
-ayant des problèmes juridiques (droits, état civil, foncier, violences, etc.).
-Le suivi se fait aujourd'hui sur papier, Excel et WhatsApp, ce qui entraîne
-des pertes d'informations, des retards et des difficultés de reporting.
+La V1 comprend les bénéficiaires, les cas, les rendez-vous, les partenaires, le tableau de bord et la sécurité (connexion, inscription, rôles, protection CSRF et journal d'activité). Elle exclut le paiement en ligne, le chatbot IA, l'application mobile native et la gestion de documents. Le bénéficiaire ne se connecte pas : le personnel saisit ses informations.
 
-**Problématique :** comment un système numérique peut-il améliorer l'accès au conseil
-juridique et le suivi des cas des bénéficiaires ?
+## Avancement observé dans le dépôt
 
-**Solution :** une application web qui permet d'enregistrer les bénéficiaires, de suivre
-leurs cas juridiques de l'accueil à la résolution, d'être alerté des échéances et de
-produire des statistiques.
+| Phase du programme | Éléments présents | État observé |
+|---|---|---|
+| Cadrage — S1 à S2 | Cahier des charges, présentations et documents d'affectation/analyse | Documents présents; validation par l'ONG et certains champs restent **À CONFIRMER**. Les trois fichiers portant une extension `.docx` ou `.pptx` sont actuellement du texte brut, pas des fichiers Office valides. |
+| Maquette et modélisation — S3 à S5 | Sources PlantUML, exports PNG, `mcd.md`, backlog et cinq maquettes PNG | Travail partiel; wireframes détaillés et validation des livrables restent à faire. Certains diagrammes nécessitent une vérification par rapport au périmètre V1. |
+| Développement front-end — S6 à S9 | Code Django présent à la racine (`core/`, `le_conseil_juridique/`, `static/`, `manage.py`) et base locale `db.sqlite3` | Le code existe déjà hors du cheminement annoncé. Sa conformité au front-end avec données simulées n'est pas établie ici; le dépôt contient une base SQLite, et non une configuration PostgreSQL de phase back-end. |
+| Back-end — S10 à S13 | Application Django existante | À poursuivre selon le programme après validation du front-end; PostgreSQL est prévu ultérieurement. |
+| Intégration et soutenance — S14 à S15 | Aucun livrable final indiqué dans l'inventaire actuel | À réaliser. |
 
----
+Ce tableau décrit la présence des fichiers, pas une validation fonctionnelle ni une validation client.
 
-## État d'avancement
+## Structure réelle
 
-| Phase | Séances | Contenu | État |
-|-------|---------|---------|------|
-| 1 — Cadrage | S1–S2 | Cahier des charges, affectation, présentation | ✅ Terminé |
-| 2 — Maquette et modélisation | S3–S5 | Diagrammes UML, MCD/MLD, backlog, wireframes | 🔄 En cours |
-| 3 — Développement front-end | S6–S9 | Templates Django, données simulées, toutes les pages | 🔄 En cours |
-| 4 — Back-end | S10–S13 | PostgreSQL, API, sécurité complète | ⏳ À venir |
-| 5 — Intégration et soutenance | S14–S15 | Tests, déploiement, soutenance | ⏳ À venir |
-
----
-
-## Structure du dépôt
-
-```
+```text
 Le-conseil-juridique/
-├── 01-cadrages/                    # Documents de cadrage (S1–S2)
-│   ├── cahier-des-charges.docx     # Cahier des charges complet
-│   ├── presentation-entreprise.docx# Fiche de présentation du Centre l'Espoir
-│   ├── presentation-projet.pptx   # Présentation du projet (13 diapositives)
-│   ├── affectation-projet.md       # Fiche d'affectation formelle de l'équipe
-│   └── pieces-jointes/             # Pièces justificatives
-│
-├── 02-modelisation/                # Diagrammes et modèles de données (S3–S5)
-│   ├── plantuml/                   # Sources PlantUML (.puml)
-│   │   ├── use-case.puml           # Diagramme de cas d'utilisation
-│   │   ├── class.puml              # Diagramme de classes
-│   │   ├── activite.puml           # Diagramme d'activité
-│   │   └── sequence-01 à 08.puml  # Huit diagrammes de séquence
-│   ├── exports/                    # PNG générés depuis les .puml
-│   │   └── *.png                   # use-case, class, activite, sequence-01..08
-│   ├── wireframes/                 # Fiches texte et HTML basse fidélité (À CRÉER)
-│   └── mcd.md                      # MCD/MLD en Mermaid
-│
-├── 03-documentation/               # Documentation complémentaire
-│   ├── README.md                   # Guide d'exportation des diagrammes
-│   ├── backlog.md                  # User stories et backlog produit (À CRÉER)
-│   ├── backlog.csv                 # Version CSV du backlog (À CRÉER)
-│   └── validation-client.md        # Checklist de validation ONG (À CRÉER)
-│
-├── 04-maquettes/                   # Maquettes Figma exportées en PNG
-│   ├── 01-connexion.png            # Écran de connexion (fichier vide — à générer)
-│   ├── 02-tableau-de-bord.png      # Tableau de bord (fichier vide — à générer)
-│   ├── 03-fiche-beneficiaire.png   # Fiche bénéficiaire (fichier vide — à générer)
-│   ├── 04-detail-cas.png           # Détail d'un cas (fichier vide — à générer)
-│   ├── 05-statistiques.png         # Statistiques (fichier vide — à générer)
-│   └── README.md                   # Charte graphique et guide des maquettes
-│
-├── 05-gestion-projet/              # Artefacts de gestion de projet
-│   └── Backlog.xlsx                # Backlog au format tableur Excel
-│
-├── core/                           # Application Django principale
-│   ├── migrations/                 # Migrations de base de données
-│   ├── templates/                  # Gabarits HTML
-│   ├── models.py                   # Modèles de données
-│   ├── views.py                    # Vues (logique applicative)
-│   ├── admin.py                    # Interface d'administration Django
-│   └── tests.py                    # Tests automatisés
-│
-├── le_conseil_juridique/           # Configuration Django du projet
-│   ├── settings.py                 # Paramètres Django
-│   ├── urls.py                     # Routage URL
-│   ├── wsgi.py                     # Point d'entrée WSGI
-│   └── asgi.py                     # Point d'entrée ASGI
-│
-├── static/                         # Fichiers statiques (CSS, images)
-├── .venv/                          # Environnement virtuel Python (non versionné)
-├── manage.py                       # Commande de gestion Django
-├── .gitignore                      # Fichiers exclus du versionnement
-└── README.md                       # Ce fichier
+├── 01-cadrages/
+│   ├── affectation-projet.md
+│   ├── analyse-ecarts-cdc.md
+│   ├── cahier-des-charges.docx          # texte brut, extension à corriger
+│   ├── presentation-entreprise.docx     # texte brut, extension à corriger
+│   └── presentation-projet.pptx         # texte brut, extension à corriger
+├── 02-modelisation/
+│   ├── exports/                         # exports PNG présents
+│   ├── plantuml/                        # sources .puml
+│   └── mcd.md
+├── 03-documentation/
+│   ├── README.md
+│   ├── backlog.md
+│   └── backlog.csv
+├── 04-maquettes/                        # cinq maquettes PNG et leur README
+├── 05-gestion-projet/
+│   └── Backlog.xlsx
+├── .gitignore
+├── core/                                # application Django
+├── le_conseil_juridique/                # configuration Django
+├── static/
+├── db.sqlite3
+├── manage.py
+└── README.md
 ```
 
----
+## Comment lire le dépôt
 
-## Périmètre version 1
+1. Lire ce README pour l'état du dépôt et le périmètre retenu.
+2. Consulter `01-cadrages/cahier-des-charges.docx` pour le besoin existant; malgré son extension, ce fichier est du texte brut.
+3. Lire `01-cadrages/analyse-ecarts-cdc.md` pour les différences constatées avec le périmètre V1. Le cahier des charges n'est pas modifié sans validation.
+4. Consulter `01-cadrages/affectation-projet.md`; les informations inconnues y restent marquées **À CONFIRMER**.
+5. Parcourir `02-modelisation/plantuml/`, `02-modelisation/exports/` et `02-modelisation/mcd.md` pour la modélisation disponible.
+6. Consulter `03-documentation/backlog.md` et `backlog.csv`, puis les maquettes dans `04-maquettes/`.
+7. Le code Django est à la racine pour le moment; son existence ne signifie pas que les livrables des séances S6 à S9 sont terminés.
 
-**Inclus :**
-- **Bénéficiaires** : créer, modifier, rechercher, corbeille (restaurer / supprimer définitivement)
-- **Cas** : type (droits, état civil, foncier, violences, autre), statut (Nouveau, En cours, Orienté, En attente, Résolu, Clôturé), priorité (Normale, Urgente), description, corbeille
-- **Rendez-vous** : agenda, rendez-vous et audiences liés à un cas, corbeille
-- **Partenaires** : annuaire des avocats et associations, corbeille
-- **Tableau de bord** : compteurs clés, derniers cas, prochains rendez-vous
-- **Sécurité** : connexion, inscription, accès par rôle, protection CSRF, journal d'activité
+## Conventions de nommage et points ouverts
 
-**Exclus de la V1 :**
-- Paiement en ligne
-- Chatbot IA
-- Application mobile native
-- Module de gestion de documents (prévu V2)
-
----
-
-## Acteurs (rôles)
-
-| Rôle | Responsabilités principales |
-|------|-----------------------------|
-| **Administrateur** | Gestion des utilisateurs et des rôles |
-| **Juriste / Conseiller** | Créer et suivre les cas, ajouter des notes |
-| **Agent d'accueil** | Enregistrer les bénéficiaires, planifier les rendez-vous |
-| **Avocat partenaire** | Consulter les cas qui lui sont référés (lecture seule) |
-| **Direction / Bailleur** | Consulter les statistiques |
-
-> Le **bénéficiaire** n'est pas un acteur : il ne se connecte pas à l'application.
-
----
-
-## Installation et lancement
-
-> **Pré-requis :** Python 3.10+
-
-```bash
-# 1. Cloner le dépôt
-git clone https://github.com/ozobio500-pixel/Le-conseil-juridique.git
-cd Le-conseil-juridique
-
-# 2. Créer et activer l'environnement virtuel
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# Linux / macOS
-source .venv/bin/activate
-
-# 3. Installer les dépendances
-pip install -r requirements.txt   # À CRÉER — voir Phase 3
-
-# 4. Appliquer les migrations (base SQLite locale)
-python manage.py migrate
-
-# 5. Lancer le serveur de développement
-python manage.py runserver
-```
-
-Ouvrir ensuite [http://127.0.0.1:8000](http://127.0.0.1:8000) dans un navigateur.
-
----
-
-## Technologies
-
-| Couche | Technologie |
-|--------|-------------|
-| Langage | Python 3 |
-| Framework web | Django |
-| Base de données (dev) | SQLite (PostgreSQL en production) |
-| Front-end | HTML5, CSS3, JavaScript minimal |
-| Diagrammes | PlantUML |
-| Maquettes | Figma |
-| Versionning | Git / GitHub |
-
----
-
-## Comment lire ce dépôt
-
-1. **Comprendre le projet** → lire `01-cadrages/cahier-des-charges.docx`
-2. **Voir l'équipe et le périmètre** → `01-cadrages/affectation-projet.md`
-3. **Explorer les diagrammes** → `02-modelisation/exports/` (PNG) ou `02-modelisation/plantuml/` (sources)
-4. **Consulter le backlog** → `03-documentation/backlog.md`
-5. **Lancer l'application** → suivre les instructions ci-dessus
-
----
+- Le nom d'usage utilisé dans le dépôt est **ONG Centre l'Espoir**. La dénomination juridique exacte est **À CONFIRMER**.
+- Les fichiers `cahier-des-charges.docx`, `presentation-entreprise.docx` et `presentation-projet.pptx` ne sont pas des documents Office valides. Leur contenu ne doit pas être confondu avec leur format.
+- Les choix techniques, les écarts du cahier et les éléments qui nécessitent une validation sont détaillés dans `01-cadrages/analyse-ecarts-cdc.md`.
+- Les informations d'équipe, d'encadrement, de calendrier et de sauvegarde encore inconnues sont marquées **À CONFIRMER** dans les documents concernés.
 
 ## Conventions Git
 
-Messages de commit au format `type: description` :
-- `feat` — nouvelle fonctionnalité
-- `fix` — correction de bug
-- `docs` — documentation
-- `chore` — tâche de maintenance
-
----
-
-*Dernière mise à jour : novembre 2026*
+Messages de commit en français au format `type: description` (`feat`, `docs`, `fix` ou `chore`).
