@@ -1,0 +1,113 @@
+@startuml mld
+hide methods
+hide stereotypes
+skinparam linetype ortho
+left to right direction
+skinparam entity {
+  BackgroundColor #F7F9FC
+  BorderColor #52677D
+}
+title MLD — Le Conseil Juridique (PostgreSQL, phase back-end)
+
+entity utilisateur {
+  * id : BIGSERIAL <<PK>>
+  --
+  nom : VARCHAR(100)
+  prenom : VARCHAR(100)
+  courriel : VARCHAR(254) <<UQ>>
+  mot_de_passe_hash : VARCHAR(128)
+  role : VARCHAR(24)
+  actif : BOOLEAN
+  partenaire_id : BIGINT <<FK, NULL>>
+}
+entity beneficiaire {
+  * id : BIGSERIAL <<PK>>
+  --
+  nom : VARCHAR(100)
+  prenom : VARCHAR(100)
+  date_naissance : DATE NULL
+  telephone : VARCHAR(30) NULL
+  adresse : TEXT NULL
+  zone : VARCHAR(100) NULL
+  supprime_le : TIMESTAMPTZ NULL
+}
+entity cas {
+  * id : BIGSERIAL <<PK>>
+  --
+  reference : VARCHAR(32) <<UQ>>
+  type : VARCHAR(20)
+  statut : VARCHAR(20)
+  priorite : VARCHAR(10)
+  description : TEXT
+  date_ouverture : TIMESTAMPTZ
+  date_cloture : TIMESTAMPTZ NULL
+  beneficiaire_id : BIGINT <<FK>>
+  juriste_id : BIGINT <<FK>>
+  supprime_le : TIMESTAMPTZ NULL
+}
+entity etape {
+  * id : BIGSERIAL <<PK>>
+  --
+  libelle : VARCHAR(200)
+  date_action : TIMESTAMPTZ
+  cas_id : BIGINT <<FK>>
+  auteur_id : BIGINT <<FK>>
+}
+entity note {
+  * id : BIGSERIAL <<PK>>
+  --
+  contenu : TEXT
+  date_creation : TIMESTAMPTZ
+  cas_id : BIGINT <<FK>>
+  auteur_id : BIGINT <<FK>>
+}
+entity rendez_vous {
+  * id : BIGSERIAL <<PK>>
+  --
+  date_heure : TIMESTAMPTZ
+  lieu : VARCHAR(200) NULL
+  objet : VARCHAR(200)
+  nature : VARCHAR(16)
+  cas_id : BIGINT <<FK>>
+  supprime_le : TIMESTAMPTZ NULL
+}
+entity partenaire {
+  * id : BIGSERIAL <<PK>>
+  --
+  nom : VARCHAR(200)
+  type : VARCHAR(16)
+  telephone : VARCHAR(30) NULL
+  courriel : VARCHAR(254) NULL
+  supprime_le : TIMESTAMPTZ NULL
+}
+entity orientation {
+  * id : BIGSERIAL <<PK>>
+  --
+  date_orientation : TIMESTAMPTZ
+  motif : TEXT NULL
+  statut_suivi : VARCHAR(20)
+  commentaire_retour : TEXT NULL
+  cas_id : BIGINT <<FK>>
+  partenaire_id : BIGINT <<FK>>
+}
+entity journal_activite {
+  * id : BIGSERIAL <<PK>>
+  --
+  action : VARCHAR(100)
+  entite_concernee : VARCHAR(50)
+  date_heure : TIMESTAMPTZ
+  utilisateur_id : BIGINT <<FK>>
+}
+
+beneficiaire ||--o{ cas
+utilisateur ||--o{ cas
+cas ||--o{ etape
+utilisateur ||--o{ etape
+cas ||--o{ note
+utilisateur ||--o{ note
+cas ||--o{ rendez_vous
+cas ||--o{ orientation
+partenaire ||--o{ orientation
+partenaire |o--o{ utilisateur
+utilisateur ||--o{ journal_activite
+@enduml

@@ -1,0 +1,81 @@
+erDiagram
+    UTILISATEUR {
+        int id PK
+        string nom
+        string prenom
+        string courriel
+        string mot_de_passe_hache
+        string role
+        boolean actif
+    }
+    BENEFICIAIRE {
+        int id PK
+        string nom
+        string prenom
+        date date_naissance
+        string telephone
+        string adresse
+        string zone
+        datetime supprime_le
+    }
+    CAS {
+        int id PK
+        string reference
+        string type
+        string statut
+        string priorite
+        string description
+        datetime date_ouverture
+        datetime date_cloture
+        datetime supprime_le
+    }
+    ETAPE {
+        int id PK
+        string libelle
+        datetime date_action
+    }
+    NOTE {
+        int id PK
+        string contenu
+        datetime date_creation
+    }
+    RENDEZ_VOUS {
+        int id PK
+        datetime date_heure
+        string lieu
+        string objet
+        string nature
+        datetime supprime_le
+    }
+    PARTENAIRE {
+        int id PK
+        string nom
+        string type
+        string telephone
+        string courriel
+        datetime supprime_le
+    }
+    ORIENTATION {
+        int id PK
+        datetime date_orientation
+        string motif
+        string statut_suivi
+        string commentaire_retour
+    }
+    JOURNAL_ACTIVITE {
+        int id PK
+        string action
+        string entite_concernee
+        datetime date_heure
+    }
+    BENEFICIAIRE ||--o{ CAS : concerne
+    UTILISATEUR ||--o{ CAS : suit
+    CAS ||--o{ ETAPE : comporte
+    UTILISATEUR ||--o{ ETAPE : redige
+    CAS ||--o{ NOTE : comporte
+    UTILISATEUR ||--o{ NOTE : redige
+    CAS ||--o{ RENDEZ_VOUS : planifie
+    CAS ||--o{ ORIENTATION : concerne
+    PARTENAIRE ||--o{ ORIENTATION : recoit
+    PARTENAIRE o|--o{ UTILISATEUR : associe_compte
+    UTILISATEUR ||--o{ JOURNAL_ACTIVITE : produit

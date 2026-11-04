@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wireframes basse fidélité — Le Conseil Juridique</title>
+  <link rel="stylesheet" href="wireframes.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Centre l'Espoir · Grand-Bassam</p>
+    <h1>Le Conseil Juridique</h1>
+    <p>Wireframes basse fidélité · Toutes les données ci-dessous sont fictives.</p>
+  </header>
+  <nav class="screen-index" aria-label="Index des écrans">
+    <a href="#connexion">Connexion</a><a href="#inscription">Inscription</a><a href="#tableau-de-bord">Tableau de bord</a>
+    <a href="#beneficiaires-liste">Bénéficiaires · liste</a><a href="#beneficiaires-fiche">Bénéficiaires · fiche</a><a href="#beneficiaires-formulaire">Bénéficiaires · formulaire</a><a href="#beneficiaires-corbeille">Bénéficiaires · corbeille</a>
+    <a href="#cas-liste">Cas · liste</a><a href="#cas-detail">Cas · détail</a><a href="#cas-formulaire">Cas · formulaire</a><a href="#cas-corbeille">Cas · corbeille</a>
+    <a href="#agenda">Agenda</a><a href="#rendez-vous-formulaire">Rendez-vous · formulaire</a><a href="#rendez-vous-corbeille">Rendez-vous · corbeille</a>
+    <a href="#partenaires-annuaire">Partenaires · annuaire</a><a href="#partenaires-formulaire">Partenaires · formulaire</a><a href="#partenaires-corbeille">Partenaires · corbeille</a>
+    <a href="#journal">Journal d'activité</a><a href="#utilisateurs">Utilisateurs et rôles</a><a href="#avocat">Vue avocat</a>
+  </nav>
+  <main>
+    <article class="screen" id="connexion">
+      <header><span class="screen-number">01</span><h2>Connexion</h2><span class="role">Personnel</span></header>
+      <div class="auth-box"><div class="brand-mark">CJ</div><h3>Se connecter</h3><form>
+        <label>Adresse courriel<input type="email" placeholder="nom@exemple.ci"></label>
+        <label>Mot de passe<input type="password" placeholder="••••••••"></label>
+        <button type="button">Se connecter</button></form>
+        <p class="message error">Erreur : identifiants à vérifier.</p><p class="muted">Première visite ? <a href="#inscription">Créer un compte</a></p>
+      </div>
+    </article>
+    <article class="screen" id="inscription">
+      <header><span class="screen-number">02</span><h2>Inscription</h2><span class="role">Nouveau compte</span></header>
+      <div class="auth-box"><h3>Demander un compte</h3><form class="form-grid">
+        <label>Nom<input placeholder="Nom"></label><label>Prénom<input placeholder="Prénom"></label>
+        <label>Adresse courriel<input type="email" placeholder="nom@exemple.ci"></label>
+        <label>Mot de passe<input type="password" placeholder="Mot de passe"></label>
+        <label>Confirmer le mot de passe<input type="password" placeholder="Confirmation"></label>
+        <p class="notice span-2">Le rôle sera attribué selon la procédure à confirmer.</p>
+        <button type="button">Créer mon compte</button></form>
+        <p class="message success">Demande prête à être transmise.</p>
+      </div>
+    </article>
+    <article class="screen app-screen" id="tableau-de-bord">
+      <header><span class="screen-number">03</span><h2>Tableau de bord</h2><span class="role">Juriste / Direction*</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Le Conseil Juridique</b><a>Tableau de bord</a><a href="#beneficiaires-liste">Bénéficiaires</a><a href="#cas-liste">Cas</a><a href="#agenda">Rendez-vous</a><a href="#partenaires-annuaire">Partenaires</a></aside>
+        <div class="workspace"><p>Bonjour, Awa (démonstration)</p><div class="stat-row"><div class="stat">Dossiers en cours<strong>12</strong></div><div class="stat">Cas urgents<strong>3</strong></div><div class="stat">Échéances · 7 jours<strong>4</strong></div></div>
+          <div class="columns"><section class="panel"><h3>Derniers cas</h3><ul><li>CJ-026 · État civil · En cours</li><li>CJ-025 · Foncier · Nouveau</li><li>CJ-024 · Droits · Orienté</li></ul></section><section class="panel"><h3>Prochains rendez-vous</h3><ul><li>05 nov. · 09 h 00 · CJ-026</li><li>06 nov. · 14 h 30 · CJ-024</li></ul></section></div>
+          <p class="message empty">Aucune donnée disponible pour ce rôle.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="beneficiaires-liste">
+      <header><span class="screen-number">04</span><h2>Bénéficiaires — Liste</h2><span class="role">Accueil / Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a>Tableau de bord</a><a class="selected">Bénéficiaires</a><a>Cas</a><a>Rendez-vous</a></aside><div class="workspace">
+        <div class="toolbar"><input placeholder="Rechercher un nom, téléphone…"><button type="button">Rechercher</button><button type="button">+ Nouveau bénéficiaire</button></div>
+        <table><thead><tr><th>Nom</th><th>Téléphone</th><th>Zone</th><th>Action</th></tr></thead><tbody><tr><td>Aminata K. (fictif)</td><td>07 ** ** 12</td><td>Adjouffou</td><td><a href="#beneficiaires-fiche">Ouvrir</a></td></tr><tr><td>Jean M. (fictif)</td><td>05 ** ** 34</td><td>Grand-Bassam</td><td>Ouvrir</td></tr></tbody></table>
+        <p class="message empty">Aucun bénéficiaire ne correspond à la recherche.</p><p class="message error">La recherche n'a pas pu aboutir. Réessayez.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="beneficiaires-fiche">
+      <header><span class="screen-number">05</span><h2>Bénéficiaires — Fiche</h2><span class="role">Accueil / Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#beneficiaires-liste">Bénéficiaires</a><a>Cas</a><a>Rendez-vous</a></aside><div class="workspace"><div class="toolbar"><button type="button">Modifier</button><button type="button">Mettre en corbeille</button></div>
+        <section class="panel"><h3>Aminata K. <small>(donnée fictive)</small></h3><p>Téléphone : 07 ** ** 12 · Zone : Adjouffou</p><p>Adresse : information de démonstration</p></section>
+        <div class="columns"><section class="panel"><h3>Cas liés</h3><p>CJ-026 · État civil · En cours</p></section><section class="panel"><h3>Rendez-vous</h3><p>05 nov. · 09 h 00</p></section></div>
+        <p class="message empty">Aucun cas ni rendez-vous lié.</p><p class="message success">Fiche mise à jour.</p><p class="message error">Fiche introuvable ou accès refusé.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="beneficiaires-formulaire">
+      <header><span class="screen-number">06</span><h2>Bénéficiaires — Formulaire</h2><span class="role">Accueil / Juriste*</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#beneficiaires-liste">Bénéficiaires</a></aside><div class="workspace"><form class="panel form-grid"><h3 class="span-2">Créer une fiche</h3>
+        <label>Nom<input placeholder="Nom"></label><label>Prénom<input placeholder="Prénom"></label>
+        <label>Date de naissance<input type="date"></label><label>Téléphone<input type="tel" placeholder="07 …"></label>
+        <label class="span-2">Adresse<input placeholder="Adresse"></label><label>Zone<input placeholder="Zone"></label>
+        <div class="actions span-2"><button type="button">Enregistrer</button><button type="button" class="secondary">Annuler</button></div></form>
+        <p class="message error">Vérifiez les champs signalés.</p><p class="message success">Fiche créée.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="beneficiaires-corbeille">
+      <header><span class="screen-number">07</span><h2>Bénéficiaires — Corbeille</h2><span class="role">Accueil / Juriste*</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#beneficiaires-liste">Bénéficiaires</a><a class="selected">Corbeille</a></aside><div class="workspace"><div class="toolbar"><h3>Fiches supprimées</h3></div>
+        <table><thead><tr><th>Nom</th><th>Supprimée le</th><th>Actions</th></tr></thead><tbody><tr><td>Fiche fictive</td><td>02 nov.</td><td><button type="button">Restaurer</button> <button type="button" class="danger">Supprimer définitivement</button></td></tr></tbody></table>
+        <p class="message notice">La suppression définitive nécessite une confirmation.</p><p class="message empty">La corbeille est vide.</p><p class="message success">Action effectuée.</p><p class="message error">Action impossible.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="cas-liste">
+      <header><span class="screen-number">08</span><h2>Cas — Liste et filtres</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a>Bénéficiaires</a><a class="selected">Cas</a><a>Rendez-vous</a></aside><div class="workspace"><div class="toolbar"><input placeholder="Rechercher une référence ou un nom"><select aria-label="Filtrer par type"><option>Type : tous</option><option>Droits</option><option>État civil</option><option>Foncier</option><option>Violences</option><option>Autre</option></select><select aria-label="Filtrer par statut"><option>Statut : tous</option><option>Nouveau</option><option>En cours</option><option>Orienté</option><option>En attente</option><option>Résolu</option><option>Clôturé</option></select><select aria-label="Filtrer par priorité"><option>Priorité : toutes</option><option>Normale</option><option>Urgente</option></select><button type="button">+ Nouveau cas</button></div>
+        <table><thead><tr><th>Référence</th><th>Bénéficiaire</th><th>Type</th><th>Statut</th><th>Priorité</th></tr></thead><tbody><tr><td><a href="#cas-detail">CJ-026</a></td><td>Aminata K. (fictif)</td><td>État civil</td><td>En cours</td><td>Urgente</td></tr><tr><td>CJ-025</td><td>Jean M. (fictif)</td><td>Foncier</td><td>Nouveau</td><td>Normale</td></tr></tbody></table>
+        <p class="message empty">Aucun cas ne correspond aux filtres.</p><p class="message error">Les cas ne peuvent pas être chargés.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="cas-detail">
+      <header><span class="screen-number">09</span><h2>Cas — Détail</h2><span class="role">Juriste / Avocat référé*</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#cas-liste">Cas</a><a>Rendez-vous</a></aside><div class="workspace"><section class="panel"><div class="toolbar"><h3>CJ-026 · État civil</h3><button type="button">Modifier</button><button type="button">Orienter</button></div><p>Bénéficiaire : Aminata K. (fictif) · Statut : En cours · Priorité : Urgente</p><p>Description : Résumé fictif de la demande.</p></section>
+        <div class="columns"><section class="panel"><h3>Étapes</h3><p>03 nov. · Premier entretien</p><button type="button">Ajouter une étape</button></section><section class="panel"><h3>Notes</h3><p>Note de démonstration (fictive)</p><button type="button">Ajouter une note</button></section></div>
+        <section class="panel"><h3>Rendez-vous et orientations</h3><p>05 nov. · Consultation · Partenaire : à définir</p></section>
+        <p class="message empty">Aucune étape, note ou orientation.</p><p class="message error">Cas non disponible ou non autorisé.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="cas-formulaire">
+      <header><span class="screen-number">10</span><h2>Cas — Formulaire</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#cas-liste">Cas</a></aside><div class="workspace"><form class="panel form-grid"><h3 class="span-2">Créer ou modifier un cas</h3>
+        <label>Bénéficiaire<select><option>Choisir une fiche</option><option>Aminata K. (fictif)</option></select></label>
+        <label>Type<select><option>Choisir</option><option>Droits</option><option>État civil</option><option>Foncier</option><option>Violences</option><option>Autre</option></select></label>
+        <label>Statut<select><option>Nouveau</option><option>En cours</option><option>Orienté</option><option>En attente</option><option>Résolu</option><option>Clôturé</option></select></label>
+        <label>Priorité<select><option>Normale</option><option>Urgente</option></select></label>
+        <label class="span-2">Description<textarea rows="3" placeholder="Décrire la situation juridique"></textarea></label>
+        <div class="actions span-2"><button type="button">Enregistrer</button><button type="button" class="secondary">Annuler</button></div></form>
+        <p class="message error">Corrigez les champs signalés.</p><p class="message success">Cas enregistré.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="cas-corbeille">
+      <header><span class="screen-number">11</span><h2>Cas — Corbeille</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#cas-liste">Cas</a><a class="selected">Corbeille</a></aside><div class="workspace"><table><thead><tr><th>Référence</th><th>Type</th><th>Supprimé le</th><th>Actions</th></tr></thead><tbody><tr><td>CJ-020 (fictif)</td><td>Droits</td><td>01 nov.</td><td><button type="button">Restaurer</button><button type="button" class="danger">Supprimer définitivement</button></td></tr></tbody></table>
+        <p class="message notice">Confirmez avant la suppression définitive.</p><p class="message empty">La corbeille est vide.</p><p class="message error">Action impossible.</p><p class="message success">Action effectuée.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="agenda">
+      <header><span class="screen-number">12</span><h2>Rendez-vous — Agenda</h2><span class="role">Accueil / Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a>Cas</a><a class="selected">Rendez-vous</a></aside><div class="workspace"><div class="toolbar"><button type="button">‹ Semaine précédente</button><h3>3–9 novembre</h3><button type="button">Semaine suivante ›</button><button type="button">+ Nouveau rendez-vous</button></div>
+        <section class="panel"><h3>À venir</h3><p>05 nov. · 09 h 00 · Consultation · CJ-026</p><p>06 nov. · 14 h 30 · Audience · CJ-024</p></section><section class="panel"><h3>Passés</h3><p>02 nov. · Entretien · CJ-022</p></section>
+        <p class="message empty">Aucun rendez-vous pour cette période.</p><p class="message error">Agenda indisponible.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="rendez-vous-formulaire">
+      <header><span class="screen-number">13</span><h2>Rendez-vous — Formulaire</h2><span class="role">Accueil / Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#agenda">Rendez-vous</a></aside><div class="workspace"><form class="panel form-grid"><h3 class="span-2">Créer ou modifier un rendez-vous</h3>
+        <label>Cas lié<select><option>Choisir un cas</option><option>CJ-026 (fictif)</option></select></label>
+        <label>Nature<select><option>Rendez-vous</option><option>Audience</option></select></label>
+        <label>Date<input type="date"></label><label>Heure<input type="time"></label>
+        <label>Lieu<input placeholder="Lieu"></label><label>Objet<input placeholder="Objet"></label>
+        <div class="actions span-2"><button type="button">Enregistrer</button><button type="button" class="secondary">Annuler</button></div></form>
+        <p class="message error">Vérifiez le cas, la date et les champs signalés.</p><p class="message success">Rendez-vous enregistré.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="rendez-vous-corbeille">
+      <header><span class="screen-number">14</span><h2>Rendez-vous — Corbeille</h2><span class="role">Accueil / Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#agenda">Rendez-vous</a><a class="selected">Corbeille</a></aside><div class="workspace"><table><thead><tr><th>Date</th><th>Objet</th><th>Cas</th><th>Actions</th></tr></thead><tbody><tr><td>01 nov. (fictif)</td><td>Consultation</td><td>CJ-020</td><td><button type="button">Restaurer</button><button type="button" class="danger">Supprimer définitivement</button></td></tr></tbody></table>
+        <p class="message notice">Confirmez avant la suppression définitive.</p><p class="message empty">La corbeille est vide.</p><p class="message error">Action impossible.</p><p class="message success">Action effectuée.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="partenaires-annuaire">
+      <header><span class="screen-number">15</span><h2>Partenaires — Annuaire</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a>Cas</a><a class="selected">Partenaires</a><a>Corbeille</a></aside><div class="workspace"><div class="toolbar"><input placeholder="Rechercher un partenaire"><select><option>Tous les types</option><option>Avocat</option><option>Association</option></select><button type="button">+ Ajouter</button></div>
+        <table><thead><tr><th>Nom</th><th>Type</th><th>Téléphone</th><th>Courriel</th></tr></thead><tbody><tr><td>Cabinet Exemple (fictif)</td><td>Avocat</td><td>07 ** ** 10</td><td>contact@exemple.ci</td></tr><tr><td>Association Exemple (fictif)</td><td>Association</td><td>05 ** ** 20</td><td>info@exemple.ci</td></tr></tbody></table>
+        <p class="message empty">Aucun partenaire ne correspond.</p><p class="message error">Annuaire indisponible.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="partenaires-formulaire">
+      <header><span class="screen-number">16</span><h2>Partenaires — Formulaire</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#partenaires-annuaire">Partenaires</a></aside><div class="workspace"><form class="panel form-grid"><h3 class="span-2">Ajouter ou modifier un partenaire</h3>
+        <label>Nom<input placeholder="Nom du partenaire"></label><label>Type<select><option>Avocat</option><option>Association</option></select></label>
+        <label>Téléphone<input type="tel" placeholder="Téléphone"></label><label>Courriel<input type="email" placeholder="Adresse courriel"></label>
+        <div class="actions span-2"><button type="button">Enregistrer</button><button type="button" class="secondary">Annuler</button></div></form>
+        <p class="message error">Corrigez les informations signalées.</p><p class="message success">Partenaire enregistré.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="partenaires-corbeille">
+      <header><span class="screen-number">17</span><h2>Partenaires — Corbeille</h2><span class="role">Juriste</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Menu</b><a href="#partenaires-annuaire">Partenaires</a><a class="selected">Corbeille</a></aside><div class="workspace"><table><thead><tr><th>Nom</th><th>Type</th><th>Supprimé le</th><th>Actions</th></tr></thead><tbody><tr><td>Partenaire fictif</td><td>Association</td><td>30 oct.</td><td><button type="button">Restaurer</button><button type="button" class="danger">Supprimer définitivement</button></td></tr></tbody></table>
+        <p class="message notice">Confirmez avant la suppression définitive.</p><p class="message empty">La corbeille est vide.</p><p class="message error">Action impossible.</p><p class="message success">Action effectuée.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="journal">
+      <header><span class="screen-number">18</span><h2>Journal d'activité</h2><span class="role">Administrateur*</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Administration</b><a>Utilisateurs</a><a class="selected">Journal d'activité</a></aside><div class="workspace"><div class="toolbar"><select><option>Tous les utilisateurs</option></select><select><option>Toutes les actions</option></select><input type="date" aria-label="Date de début"><input type="date" aria-label="Date de fin"><button type="button">Filtrer</button></div>
+        <table><thead><tr><th>Date et heure</th><th>Auteur</th><th>Action</th><th>Élément</th></tr></thead><tbody><tr><td>04 nov. · 10 h 15</td><td>Awa (fictif)</td><td>Modification</td><td>Cas CJ-026</td></tr><tr><td>04 nov. · 09 h 40</td><td>Karim (fictif)</td><td>Création</td><td>Rendez-vous</td></tr></tbody></table>
+        <p class="message empty">Aucune activité pour ces filtres.</p><p class="message error">Journal indisponible.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="utilisateurs">
+      <header><span class="screen-number">19</span><h2>Gestion des utilisateurs et rôles</h2><span class="role">Administrateur</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Administration</b><a class="selected">Utilisateurs</a><a href="#journal">Journal d'activité</a></aside><div class="workspace"><div class="toolbar"><input placeholder="Rechercher un utilisateur"><button type="button">+ Nouvel utilisateur</button></div>
+        <table><thead><tr><th>Nom</th><th>Courriel</th><th>Rôle</th><th>État</th><th>Action</th></tr></thead><tbody><tr><td>Awa K. (fictif)</td><td>awa@exemple.ci</td><td>Juriste/conseiller</td><td>Actif</td><td><button type="button">Modifier</button></td></tr><tr><td>Karim D. (fictif)</td><td>karim@exemple.ci</td><td>Agent d'accueil</td><td>Actif</td><td><button type="button">Modifier</button></td></tr></tbody></table>
+        <p class="message notice">Rôles : Administrateur, Juriste/conseiller, Agent d'accueil, Avocat partenaire, Direction/bailleur.</p><p class="message empty">Aucun utilisateur.</p><p class="message error">Vérifiez le courriel et le rôle.</p><p class="message success">Utilisateur enregistré.</p></div></div>
+    </article>
+    <article class="screen app-screen" id="avocat">
+      <header><span class="screen-number">20</span><h2>Avocat — Cas référés</h2><span class="role">Avocat partenaire · lecture seule</span></header>
+      <div class="app-layout"><aside class="side-menu"><b>Espace partenaire</b><a class="selected">Cas référés</a></aside><div class="workspace"><p>Les cas affichés sont référés à votre partenaire.</p>
+        <table><thead><tr><th>Référence</th><th>Type</th><th>Statut</th><th>Action</th></tr></thead><tbody><tr><td>CJ-024 (fictif)</td><td>Droits</td><td>Orienté</td><td><a href="#cas-detail">Consulter</a></td></tr></tbody></table>
+        <section class="panel"><h3>Détail en lecture seule</h3><p>Référence, type, description et informations autorisées du cas référé.</p></section>
+        <p class="message empty">Aucun cas ne vous a été référé.</p><p class="message error">Accès non autorisé à ce cas.</p></div></div>
+    </article>
+  </main>
+  <footer><p>Wireframe de travail non validé · Les accès exacts et certains libellés restent à confirmer avec l'ONG.</p></footer>
+</body>
+</html>

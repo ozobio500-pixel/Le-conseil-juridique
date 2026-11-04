@@ -1,0 +1,102 @@
+@startuml mcd
+hide methods
+hide stereotypes
+skinparam linetype ortho
+left to right direction
+skinparam entity {
+  BackgroundColor #F7F9FC
+  BorderColor #52677D
+}
+title MCD — Le Conseil Juridique
+
+entity Utilisateur {
+  * id
+  --
+  nom
+  prenom
+  courriel
+  mot_de_passe_hache
+  role
+  actif
+}
+entity Beneficiaire {
+  * id
+  --
+  nom
+  prenom
+  date_naissance
+  telephone
+  adresse
+  zone
+  supprime_le
+}
+entity Cas {
+  * id
+  --
+  reference
+  type
+  statut
+  priorite
+  description
+  date_ouverture
+  date_cloture
+  supprime_le
+}
+entity Etape {
+  * id
+  --
+  libelle
+  date_action
+}
+entity Note {
+  * id
+  --
+  contenu
+  date_creation
+}
+entity RendezVous {
+  * id
+  --
+  date_heure
+  lieu
+  objet
+  nature
+  supprime_le
+}
+entity Partenaire {
+  * id
+  --
+  nom
+  type
+  telephone
+  courriel
+  supprime_le
+}
+entity Orientation {
+  * id
+  --
+  date_orientation
+  motif
+  statut_suivi
+  commentaire_retour
+}
+entity JournalActivite {
+  * id
+  --
+  action
+  entite_concernee
+  date_heure
+}
+
+Beneficiaire ||--o{ Cas : concerne
+Utilisateur ||--o{ Cas : suit
+Cas ||--o{ Etape : comporte
+Utilisateur ||--o{ Etape : redige
+Cas ||--o{ Note : comporte
+Utilisateur ||--o{ Note : redige
+Cas ||--o{ RendezVous : planifie
+Cas ||--o{ Orientation : fait l'objet
+Partenaire ||--o{ Orientation : recoit
+Partenaire |o--o{ Utilisateur : associe un compte
+Utilisateur ||--o{ JournalActivite : produit
+@enduml

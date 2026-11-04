@@ -1,0 +1,92 @@
+erDiagram
+    UTILISATEUR {
+        bigint id PK
+        varchar nom
+        varchar prenom
+        varchar courriel UK
+        varchar mot_de_passe_hash
+        varchar role
+        boolean actif
+        bigint partenaire_id FK
+    }
+    BENEFICIAIRE {
+        bigint id PK
+        varchar nom
+        varchar prenom
+        date date_naissance
+        varchar telephone
+        text adresse
+        varchar zone
+        timestamptz supprime_le
+    }
+    CAS {
+        bigint id PK
+        varchar reference UK
+        varchar type
+        varchar statut
+        varchar priorite
+        text description
+        timestamptz date_ouverture
+        timestamptz date_cloture
+        bigint beneficiaire_id FK
+        bigint juriste_id FK
+        timestamptz supprime_le
+    }
+    ETAPE {
+        bigint id PK
+        varchar libelle
+        timestamptz date_action
+        bigint cas_id FK
+        bigint auteur_id FK
+    }
+    NOTE {
+        bigint id PK
+        text contenu
+        timestamptz date_creation
+        bigint cas_id FK
+        bigint auteur_id FK
+    }
+    RENDEZ_VOUS {
+        bigint id PK
+        timestamptz date_heure
+        varchar lieu
+        varchar objet
+        varchar nature
+        bigint cas_id FK
+        timestamptz supprime_le
+    }
+    PARTENAIRE {
+        bigint id PK
+        varchar nom
+        varchar type
+        varchar telephone
+        varchar courriel
+        timestamptz supprime_le
+    }
+    ORIENTATION {
+        bigint id PK
+        timestamptz date_orientation
+        text motif
+        varchar statut_suivi
+        text commentaire_retour
+        bigint cas_id FK
+        bigint partenaire_id FK
+    }
+    JOURNAL_ACTIVITE {
+        bigint id PK
+        varchar action
+        varchar entite_concernee
+        timestamptz date_heure
+        bigint utilisateur_id FK
+    }
+    BENEFICIAIRE ||--o{ CAS : beneficiaire_id
+    UTILISATEUR ||--o{ CAS : juriste_id
+    CAS ||--o{ ETAPE : cas_id
+    UTILISATEUR ||--o{ ETAPE : auteur_id
+    CAS ||--o{ NOTE : cas_id
+    UTILISATEUR ||--o{ NOTE : auteur_id
+    CAS ||--o{ RENDEZ_VOUS : cas_id
+    CAS ||--o{ ORIENTATION : cas_id
+    PARTENAIRE ||--o{ ORIENTATION : partenaire_id
+    PARTENAIRE o|--o{ UTILISATEUR : partenaire_id
+    UTILISATEUR ||--o{ JOURNAL_ACTIVITE : utilisateur_id
