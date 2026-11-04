@@ -7,103 +7,66 @@
     {% load static %}
     <style>
         body {
-            background-color: #FDFBF7; /* Beige clair */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            background-color: #FDFBF7; font-family: 'Segoe UI', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0;
         }
         .login-card {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
+            background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center;
         }
-        .logo {
-            max-width: 200px; 
-            height: auto;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #6B1D2F; /* Bordeaux */
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        label {
-            display: block;
-            color: #333;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+        .logo { max-width: 150px; height: auto; margin-bottom: 20px; }
+        h2 { color: #6B1D2F; margin-bottom: 30px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; color: #333; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         button {
-            width: 100%;
-            padding: 12px;
-            background-color: #6B1D2F; /* Bordeaux */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
+            width: 100%; padding: 12px; background-color: #6B1D2F; color: white;
+            border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px;
         }
-        button:hover {
-            background-color: #4A1320;
-        }
-        .error-message {
-            color: red; 
-            margin-bottom: 15px; 
-            font-weight: bold;
-            background-color: #f8d7da;
-            padding: 10px;
-            border-radius: 5px;
-        }
+        button:hover { background-color: #4A1320; }
+        .error-message { color: red; background-color: #f8d7da; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
     <div class="login-card">
-        <img src="{% static 'images/logo.png' %}" alt="Logo de l'ONG Centre l'Espoir" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        <h2>Connexion</h2>
         
-        <h2>Le Conseil Juridique</h2>
-        
-        <!-- Affichage des messages d'erreur -->
         {% if messages %}
             {% for message in messages %}
-                <div class="error-message">
-                    {{ message }}
-                </div>
+                <div class="error-message">{{ message }}</div>
             {% endfor %}
         {% endif %}
 
         <form method="POST">
-            {% csrf_token %} 
+            {% csrf_token %}
             <div class="form-group">
-                <label for="email">Adresse email</label>
-                <input type="text" id="email" name="email" placeholder="votre@email.com" required>
+                <label>Adresse email</label>
+                <input type="email" name="email" required placeholder="ex: aminata@ong.ci">
             </div>
             <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" placeholder="********" required>
+                <label>Mot de passe</label>
+                <input type="password" name="password" required placeholder="********">
             </div>
+            
+            <!-- Sélecteur de rôle pour la démo -->
+            <div class="form-group">
+                <label>Rôle (Simulation)</label>
+                <select name="role">
+                    <option value="Juriste">Juriste / Conseiller</option>
+                    <option value="Agent d'accueil">Agent d'accueil</option>
+                    <option value="Avocat">Avocat partenaire</option>
+                    <option value="Administrateur">Administrateur</option>
+                </select>
+            </div>
+            
             <button type="submit">Se connecter</button>
-                    <p style="margin-top: 20px; font-size: 14px;">
-            Pas encore de compte ? <a href="{% url 'inscription' %}" style="color: #6B1D2F; font-weight: bold; text-decoration: none;">S'inscrire</a>
-        </p>
         </form>
+        
+        <p style="margin-top: 20px; font-size: 14px;">
+            Pas encore de compte ? <a href="#" style="color: #6B1D2F; font-weight: bold; text-decoration: none;">S'inscrire</a>
+        </p>
     </div>
 </body>
 </html>

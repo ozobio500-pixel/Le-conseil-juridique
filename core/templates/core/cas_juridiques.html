@@ -6,10 +6,10 @@
     <div class="header">
         <h1>Cas Juridiques</h1>
         <div>
-            <a href="{% url 'corbeille_cas' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
-                Voir la corbeille
+            <a href="#" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                🗑️ Voir la corbeille
             </a>
-            <a href="{% url 'ajouter_cas' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            <a href="#" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                 + Nouveau cas
             </a>
         </div>
@@ -31,27 +31,27 @@
                 {% for c in cas %}
                 <tr style="border-bottom: 1px solid #eee;">
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'detail_cas' c.id %}" style="color: #1976D2; font-weight: bold; text-decoration: none;">
-                            {{ c.reference }}
-                        </a>
+                        <a href="#" style="color: #1976D2; font-weight: bold; text-decoration: none;">{{ c.reference }}</a>
                     </td>
-                    <td style="padding: 12px 10px;"><strong>{{ c.beneficiaire.nom }} {{ c.beneficiaire.prenom }}</strong></td>
-                    <td style="padding: 12px 10px;">{{ c.get_type_cas_display }}</td>
-                    <td style="padding: 12px 10px;">{{ c.get_priorite_display }}</td>
+                    <td style="padding: 12px 10px;">
+                        {% for b in beneficiaires %}
+                            {% if b.id == c.beneficiaire_id %}{{ b.nom }} {{ b.prenom }}{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td style="padding: 12px 10px;">{{ c.type }}</td>
+                    <td style="padding: 12px 10px;">{{ c.priorite }}</td>
                     <td style="padding: 12px 10px;">
                         <span style="background-color: #F4D0D8; color: #6B1D2F; padding: 5px 10px; border-radius: 12px; font-size: 12px; font-weight: bold;">
-                            {{ c.get_statut_display }}
+                            {{ c.statut }}
                         </span>
                     </td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'modifier_cas' c.id %}" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">Modifier</a>
-                        <a href="{% url 'supprimer_cas' c.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">Supprimer</a>
+                        <a href="#" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">✏️ Modifier</a>
+                        <a href="#" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">🗑️ Supprimer</a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="6" style="text-align: center; padding: 20px; color: #999;">Aucun cas juridique enregistré.</td>
-                </tr>
+                <tr><td colspan="6" style="text-align: center; padding: 20px; color: #999;">Aucun cas enregistré.</td></tr>
                 {% endfor %}
             </tbody>
         </table>

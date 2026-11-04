@@ -6,10 +6,10 @@
     <div class="header">
         <h1>Liste des Bénéficiaires</h1>
         <div>
-            <a href="{% url 'corbeille_beneficiaires' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
-                Voir la corbeille
+            <a href="#" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                🗑️ Voir la corbeille
             </a>
-            <a href="{% url 'ajouter_beneficiaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            <a href="#" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                 + Nouveau bénéficiaire
             </a>
         </div>
@@ -27,21 +27,19 @@
                 </tr>
             </thead>
             <tbody>
-                {% for benef in beneficiaires %}
+                {% for b in beneficiaires %}
                 <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px 10px;">{{ benef.nom }}</td>
-                    <td style="padding: 12px 10px;">{{ benef.prenom }}</td>
-                    <td style="padding: 12px 10px;">{{ benef.telephone }}</td>
-                    <td style="padding: 12px 10px;">{{ benef.zone }}</td>
+                    <td style="padding: 12px 10px;">{{ b.nom }}</td>
+                    <td style="padding: 12px 10px;">{{ b.prenom }}</td>
+                    <td style="padding: 12px 10px;">{{ b.telephone }}</td>
+                    <td style="padding: 12px 10px;">{{ b.zone }}</td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'modifier_beneficiaire' benef.id %}" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">Modifier</a>
-                        <a href="{% url 'supprimer_beneficiaire' benef.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">Supprimer</a>
+                        <a href="#" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">✏️ Modifier</a>
+                        <a href="#" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">🗑️ Supprimer</a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun bénéficiaire enregistré.</td>
-                </tr>
+                <tr><td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun bénéficiaire enregistré.</td></tr>
                 {% endfor %}
             </tbody>
         </table>

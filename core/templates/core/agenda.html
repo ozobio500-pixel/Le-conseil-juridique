@@ -6,10 +6,10 @@
     <div class="header">
         <h1>Agenda & Rendez-vous</h1>
         <div>
-            <a href="{% url 'corbeille_rdv' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
-                Voir la corbeille
+            <a href="#" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                🗑️ Voir la corbeille
             </a>
-            <a href="{% url 'ajouter_rdv' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            <a href="#" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                 + Planifier un RDV
             </a>
         </div>
@@ -23,27 +23,23 @@
                     <th style="padding: 10px;">Objet</th>
                     <th style="padding: 10px;">Type</th>
                     <th style="padding: 10px;">Lieu</th>
-                    <th style="padding: 10px;">Dossier lié</th>
                     <th style="padding: 10px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for rdv in rdvs %}
                 <tr style="border-bottom: 1px solid #eee;">
-                    <td style="padding: 12px 10px;">{{ rdv.date_heure|date:"d/m/Y à H:i" }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.date }}</td>
                     <td style="padding: 12px 10px;">{{ rdv.objet }}</td>
-                    <td style="padding: 12px 10px;">{{ rdv.get_type_rdv_display }}</td>
+                    <td style="padding: 12px 10px;">{{ rdv.type }}</td>
                     <td style="padding: 12px 10px;">{{ rdv.lieu }}</td>
-                    <td style="padding: 12px 10px;">{{ rdv.cas.reference }} ({{ rdv.cas.beneficiaire.nom }})</td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'modifier_rdv' rdv.id %}" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">Modifier</a>
-                        <a href="{% url 'supprimer_rdv' rdv.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">Supprimer</a>
+                        <a href="#" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">✏️ Modifier</a>
+                        <a href="#" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">🗑️ Supprimer</a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="6" style="text-align: center; padding: 20px; color: #999;">Aucun rendez-vous planifié.</td>
-                </tr>
+                <tr><td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun rendez-vous planifié.</td></tr>
                 {% endfor %}
             </tbody>
         </table>

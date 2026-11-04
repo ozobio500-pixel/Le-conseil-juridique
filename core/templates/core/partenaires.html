@@ -6,10 +6,10 @@
     <div class="header">
         <h1>Annuaire des Partenaires</h1>
         <div>
-            <a href="{% url 'corbeille_partenaire' %}" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
-                Voir la corbeille
+            <a href="#" style="color: #6B1D2F; text-decoration: none; margin-right: 15px; font-weight: bold;">
+                🗑️ Voir la corbeille
             </a>
-            <a href="{% url 'ajouter_partenaire' %}" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            <a href="#" style="background-color: #6B1D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                 + Ajouter un partenaire
             </a>
         </div>
@@ -30,18 +30,16 @@
                 {% for p in partenaires %}
                 <tr style="border-bottom: 1px solid #eee;">
                     <td style="padding: 12px 10px;">{{ p.nom }}</td>
-                    <td style="padding: 12px 10px;">{{ p.get_type_partenaire_display }}</td>
+                    <td style="padding: 12px 10px;">{{ p.type }}</td>
                     <td style="padding: 12px 10px;">{{ p.telephone }}</td>
                     <td style="padding: 12px 10px;">{{ p.email|default:"-" }}</td>
                     <td style="padding: 12px 10px;">
-                        <a href="{% url 'modifier_partenaire' p.id %}" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">Modifier</a>
-                        <a href="{% url 'supprimer_partenaire' p.id %}" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">Supprimer</a>
+                        <a href="#" style="color: #1976D2; text-decoration: none; margin-right: 10px; font-weight: bold;">✏️ Modifier</a>
+                        <a href="#" style="color: #D32F2F; text-decoration: none;" onclick="return confirm('Mettre à la corbeille ?');">🗑️ Supprimer</a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr>
-                    <td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun partenaire enregistré.</td>
-                </tr>
+                <tr><td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucun partenaire enregistré.</td></tr>
                 {% endfor %}
             </tbody>
         </table>

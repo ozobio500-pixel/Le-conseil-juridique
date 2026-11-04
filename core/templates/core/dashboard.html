@@ -6,7 +6,7 @@
     <div class="header">
         <h1>Tableau de bord</h1>
         <div class="user-info">
-            Connecté en tant que : <strong>{{ request.user.username }}</strong>
+            Connecté en tant que : <strong>{{ nom_utilisateur }} ({{ role_utilisateur }})</strong>
         </div>
     </div>
 
@@ -42,11 +42,11 @@
                     {% for c in derniers_cas %}
                     <tr style="border-bottom: 1px solid #eee;">
                         <td style="padding: 10px 0;">
-                            <a href="{% url 'detail_cas' c.id %}" style="color: #1976D2; font-weight: bold; text-decoration: none;">{{ c.reference }}</a><br>
-                            <span style="font-size: 12px; color: #666;">{{ c.beneficiaire.nom }} {{ c.beneficiaire.prenom }}</span>
+                            <strong>{{ c.reference }}</strong><br>
+                            <span style="font-size: 12px; color: #666;">{{ c.type }} - {{ c.description|truncatechars:30 }}</span>
                         </td>
                         <td style="padding: 10px 0; text-align: right;">
-                            <span style="background: #F4D0D8; color: #6B1D2F; padding: 3px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">{{ c.get_statut_display }}</span>
+                            <span style="background: #F4D0D8; color: #6B1D2F; padding: 3px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;">{{ c.statut }}</span>
                         </td>
                     </tr>
                     {% empty %}
@@ -62,7 +62,7 @@
             <h3 style="margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #6B1D2F;">Prochains RDV</h3>
             {% for rdv in prochains_rdv %}
             <div style="padding: 10px 0; border-bottom: 1px solid #eee;">
-                <div style="font-size: 12px; color: #D32F2F; font-weight: bold;">{{ rdv.date_heure|date:"d M à H:i" }}</div>
+                <div style="font-size: 12px; color: #D32F2F; font-weight: bold;">{{ rdv.date }}</div>
                 <div style="font-weight: bold; font-size: 14px; margin-top: 3px;">{{ rdv.objet }}</div>
             </div>
             {% empty %}
@@ -104,7 +104,7 @@
                     <tr style="border-bottom: 1px solid #eee;">
                         <td style="padding: 10px 0;">
                             <strong>{{ p.nom }}</strong><br>
-                            <span style="font-size: 12px; color: #666;">{{ p.get_type_partenaire_display }}</span>
+                            <span style="font-size: 12px; color: #666;">{{ p.type }}</span>
                         </td>
                     </tr>
                     {% empty %}

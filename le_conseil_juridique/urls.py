@@ -52,4 +52,5 @@ urlpatterns = [
     path('cas-juridiques/supprimer-definitif/<int:id>/', views.supprimer_definitivement_cas, name='supprimer_definitivement_cas'),
     path('agenda/supprimer-definitif/<int:id>/', views.supprimer_definitivement_rdv, name='supprimer_definitivement_rdv'),
     path('partenaires/supprimer-definitif/<int:id>/', views.supprimer_definitivement_partenaire, name='supprimer_definitivement_partenaire'),
+        path('deconnexion/', views.logout_view, name='logout'),
 ]

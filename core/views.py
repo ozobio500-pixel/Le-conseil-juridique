@@ -1,4 +1,5 @@
-﻿from django.shortcuts import render, redirect
+﻿from .mock_data import BENEFICIAIRES, CAS, RENDEZ_VOUS, PARTENAIRES, JOURNAL, UTILISATEURS
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -7,6 +8,31 @@ import datetime
 from .models import Beneficiaire, Cas, RendezVous, Partenaire
 
 def login_view(request):
+    from .mock_data import UTILISATEURS
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        role = request.POST.get('role', 'Juriste') # Rôle par défaut
+        
+        # Simulation de connexion : on cherche l'utilisateur par email
+        user_found = None
+        for u in UTILISATEURS:
+            if u['email'] == email:
+                user_found = u
+                break
+                
+        if user_found:
+            # On stocke le rôle dans la session pour simuler l'authentification
+            request.session['user_id'] = user_found['id']
+            request.session['user_email'] = user_found['email']
+            request.session['user_role'] = user_found['role']
+            request.session['user_nom'] = user_found['nom'] + " " + user_found['prenom']
+            
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Aucun compte trouvé avec cet email.")
+            
+    return render(request, 'core/login.html')
     if request.method == 'POST':
         identifiant = request.POST.get('email')
         password = request.POST.get('password')
@@ -57,21 +83,29 @@ def inscription_view(request):
     return render(request, 'core/inscription.html')
 
 def dashboard_view(request):
-    # On compte TOUS les cas non supprimés
-    nombre_cas = Cas.objects.filter(est_supprime=False).count()
-    nombre_urgents = Cas.objects.filter(est_supprime=False, priorite='URGENTE').count()
-    
-    aujourd_hui = timezone.now()
-    dans_7_jours = aujourd_hui + datetime.timedelta(days=7)
-    nombre_echeances = RendezVous.objects.filter(est_supprime=False, date_heure__range=(aujourd_hui, dans_7_jours)).count()
+    # Récupération du nom depuis la session (simulation)
+    nom_utilisateur = request.session.get('user_nom', 'Invité')
+    role_utilisateur = request.session.get('user_role', 'Inconnu')
 
-    # On récupère les 5 derniers de chaque catégorie
-    derniers_benefs = Beneficiaire.objects.filter(est_supprime=False).order_by('-date_enregistrement')[:5]
-    derniers_cas = Cas.objects.filter(est_supprime=False).order_by('-date_ouverture')[:5]
-    prochains_rdv = RendezVous.objects.filter(est_supprime=False, date_heure__gte=aujourd_hui).order_by('date_heure')[:5]
-    derniers_partenaires = Partenaire.objects.filter(est_supprime=False).order_by('-id')[:5]
+    # Compteurs (données simulées)
+    cas_actifs = [c for c in CAS if not c['supprime']]
+    benefs_actifs = [b for b in BENEFICIAIRES if not b['supprime']]
+    rdvs_actifs = [r for r in RENDEZ_VOUS if not r['supprime']]
+    partenaires_actifs = [p for p in PARTENAIRES if not p['supprime']]
+
+    nombre_cas = len(cas_actifs)
+    nombre_urgents = len([c for c in cas_actifs if c['priorite'] == 'Urgente'])
+    nombre_echeances = len(rdvs_actifs)
+
+    # Listes pour l'affichage
+    derniers_benefs = benefs_actifs[-5:]
+    derniers_cas = cas_actifs[-5:]
+    prochains_rdv = rdvs_actifs[:5]
+    derniers_partenaires = partenaires_actifs[-5:]
 
     context = {
+        'nom_utilisateur': nom_utilisateur,
+        'role_utilisateur': role_utilisateur,
         'nombre_cas': nombre_cas,
         'nombre_urgents': nombre_urgents,
         'nombre_echeances': nombre_echeances,
@@ -83,9 +117,8 @@ def dashboard_view(request):
     return render(request, 'core/dashboard.html', context)
 # --- BENEFICIAIRES ---
 def beneficiaires_view(request):
-    liste_beneficiaires = Beneficiaire.objects.filter(est_supprime=False).order_by('-date_enregistrement')
-    return render(request, 'core/beneficiaires.html', {'beneficiaires': liste_beneficiaires})
-
+    benefs = [b for b in BENEFICIAIRES if not b['supprime']]
+    return render(request, 'core/beneficiaires.html', {'beneficiaires': benefs})
 def ajouter_beneficiaire_view(request):
     if request.method == 'POST':
         Beneficiaire.objects.create(
@@ -126,8 +159,8 @@ def modifier_beneficiaire_view(request, id):
 
 # --- CAS JURIDIQUES ---
 def cas_juridiques_view(request):
-    liste_cas = Cas.objects.filter(est_supprime=False).order_by('-date_ouverture')
-    return render(request, 'core/cas_juridiques.html', {'cas': liste_cas})
+    cas_actifs = [c for c in CAS if not c['supprime']]
+    return render(request, 'core/cas_juridiques.html', {'cas': cas_actifs})
 
 def detail_cas_view(request, id):
     cas_obj = Cas.objects.get(id=id)
@@ -190,8 +223,9 @@ def modifier_cas_view(request, id):
 
 # --- AGENDA ---
 def agenda_view(request):
-    liste_rdv = RendezVous.objects.filter(est_supprime=False).order_by('date_heure')
-    return render(request, 'core/agenda.html', {'rdvs': liste_rdv})
+    rdvs = [r for r in RENDEZ_VOUS if not r['supprime']]
+    return render(request, 'core/agenda.html', {'rdvs': rdvs})
+
 
 def ajouter_rdv_view(request):
     if request.method == 'POST':
@@ -239,9 +273,8 @@ def modifier_rdv_view(request, id):
 
 # --- PARTENAIRES ---
 def partenaires_view(request):
-    liste_partenaires = Partenaire.objects.filter(est_supprime=False)
-    return render(request, 'core/partenaires.html', {'partenaires': liste_partenaires})
-
+    partenaires = [p for p in PARTENAIRES if not p['supprime']]
+    return render(request, 'core/partenaires.html', {'partenaires': partenaires})
 def ajouter_partenaire_view(request):
     if request.method == 'POST':
         Partenaire.objects.create(
@@ -299,3 +332,7 @@ def supprimer_definitivement_partenaire(request, id):
     part = Partenaire.objects.get(id=id)
     part.delete()
     return redirect('corbeille_partenaire')
+def logout_view(request):
+    # On vide la session
+    request.session.flush()
+    return redirect('login')
