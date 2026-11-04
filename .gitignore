@@ -14,3 +14,14 @@ desktop.ini
 ~$*.docx
 ~$*.pptx
 ~$*.xlsx
+
+# Environnement virtuel (très lourd)
+env/
+.venv/
+venv/
+
+# Django
+db.sqlite3
+__pycache__/
+*.py[cod]
+*.log
